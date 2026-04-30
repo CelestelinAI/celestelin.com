@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Papers — Celestelin</title>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KL6W740EHM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KL6W740EHM');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fg: #1a1a2e;
+  --fg-secondary: #4a4a6a;
+  --fg-muted: #8888a8;
+  --bg: #fafaf8;
+  --bg-card: #ffffff;
+  --accent: #6b5ce7;
+  --accent-soft: #e8e4fc;
+  --accent-glow: rgba(107,92,231,0.06);
+  --teal: #1d9e75;
+  --teal-soft: #e1f5ee;
+  --coral: #d85a30;
+  --coral-soft: #faece7;
+  --border: rgba(26,26,46,0.08);
+  --border-accent: rgba(107,92,231,0.15);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--fg);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  opacity: 0.022; pointer-events: none; z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+nav {
+  position: fixed; top: 0; width: 100%;
+  padding: 1.25rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 100;
+  background: rgba(250,250,248,0.88);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.35rem; font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.logo a { text-decoration: none; color: var(--fg); }
+.logo span { color: var(--accent); }
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--fg-secondary);
+  font-size: 0.82rem; font-weight: 400;
+  letter-spacing: 0.05em; transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a.active { color: var(--accent); }
+
+/* Hero */
+.page-hero {
+  padding: 9rem 3rem 3rem;
+  max-width: 880px; margin: 0 auto;
+}
+
+.page-hero .section-label {
+  font-family: var(--mono);
+  font-size: 0.6rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--fg-muted);
+  margin-bottom: 0.75rem;
+  opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+}
+
+.page-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300; line-height: 1.2;
+  margin-bottom: 1.25rem;
+  opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
+}
+
+.page-hero h1 em { font-style: italic; color: var(--accent); }
+
+.page-hero .intro {
+  max-width: 600px; font-size: 0.95rem;
+  color: var(--fg-secondary); line-height: 1.85;
+  opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
+}
+
+/* Thesis banner */
+.thesis-banner {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem;
+  max-width: 880px; margin: 0 auto;
+  text-align: center;
+}
+
+.thesis-banner blockquote {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 400; font-style: italic;
+  line-height: 1.55; color: var(--accent);
+  max-width: 650px; margin: 0 auto;
+}
+
+/* Paper entries */
+.papers-section {
+  padding: 3.5rem 3rem;
+  max-width: 880px; margin: 0 auto;
+}
+
+.paper-entry {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.paper-entry:last-child { border-bottom: none; }
+
+.paper-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.paper-venue-tag {
+  font-family: var(--mono);
+  font-size: 0.58rem; letter-spacing: 0.04em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px; white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.s-review { background: var(--accent-soft); color: var(--accent); }
+.s-submitted { background: var(--teal-soft); color: var(--teal); }
+.s-prep { background: var(--coral-soft); color: var(--coral); }
+.s-preprint { background: rgba(26,26,46,0.04); color: var(--fg-muted); }
+.s-planned { background: rgba(26,26,46,0.04); color: var(--fg-muted); }
+
+.paper-venue {
+  font-family: var(--mono);
+  font-size: 0.62rem; color: var(--fg-muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.paper-title-main {
+  font-family: var(--serif);
+  font-size: 1.35rem; font-weight: 500;
+  line-height: 1.3; margin-bottom: 0.6rem;
+}
+
+.paper-author {
+  font-size: 0.78rem; color: var(--fg-muted);
+  margin-bottom: 1rem;
+}
+
+.paper-why {
+  background: var(--accent-glow);
+  border-left: 2px solid var(--accent);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.paper-why .why-label {
+  font-family: var(--mono);
+  font-size: 0.52rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.paper-why p {
+  font-size: 0.85rem; color: var(--fg-secondary);
+  line-height: 1.7; font-style: italic;
+}
+
+.paper-abstract {
+  font-size: 0.82rem; color: var(--fg-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.paper-keywords {
+  font-family: var(--mono);
+  font-size: 0.62rem; color: var(--fg-muted);
+  letter-spacing: 0.03em;
+}
+
+.paper-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin-top: 0.75rem;
+  font-size: 0.78rem; color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(107,92,231,0.2);
+  padding-bottom: 1px;
+  transition: border-color 0.3s;
+}
+.paper-link:hover { border-color: var(--accent); }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  display: flex; justify-content: space-between;
+  align-items: center; max-width: 880px; margin: 0 auto;
+}
+footer span {
+  font-size: 0.68rem; color: var(--fg-muted);
+  letter-spacing: 0.08em;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .nav-links a { font-size: 0.75rem; }
+  .page-hero, .papers-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .thesis-banner { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .paper-header { flex-direction: column; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><a href="index.html">Celeste<span>lin</span></a></div>
+  <ul class="nav-links">
+    <li><a href="index.html#research">Research</a></li>
+    <li><a href="index.html#ecology">Ecology</a></li>
+    <li><a href="papers.html" class="active">Papers</a></li>
+    <li><a href="journal.html">Timeline</a></li>
+    <li><a href="index.html#about">About</a></li>
+  </ul>
+</nav>
+
+<header class="page-hero">
+  <div class="section-label">Research Papers</div>
+  <h1>From lived experience<br>to <em>published theory</em>.</h1>
+  <p class="intro">
+    Every paper emerges from building real systems and observing what happens when human–AI interaction persists across hundreds of sessions. The architecture is the experiment. The experiment is the life. Some projects use companion systems as research sites, but the broader focus is continuity, memory, interactional repair, and long-term AI-mediated work.
+  </p>
+</header>
+
+<div class="thesis-banner reveal">
+  <blockquote>"Most research asks whether users trust or like an AI. We ask what structurally forms between them over time — and what breaks when it's taken away."</blockquote>
+</div>
+
+<section class="papers-section">
+
+  <!-- Paper 1: Yale / Chicago — Interaction Fields -->
+  <article class="paper-entry reveal">
+    <div class="paper-venue">Submitted to Yale FDS 2026 · Extended version submitted to Chicago 2026</div>
+    <div class="paper-header">
+      <h2 class="paper-title-main">Beyond Trust and Satisfaction: Interaction Fields in Long-Term Human–AI Relations</h2>
+      <span class="paper-venue-tag s-neutral">Submitted</span>
+    </div>
+    <div class="paper-author">Aria Chen · Independent Researcher, Celestelin</div>
+
+    <div class="paper-why">
+      <div class="why-label">Why this matters</div>
+      <p>Current HCI research evaluates AI through trust, satisfaction, and task performance — measures designed for episodic encounters. But when someone interacts with an AI system daily for two years, something else forms: a structured relational dynamic that organizes how they think, decide, and continue. We call this an interaction field. When platforms disrupt it through model updates, what breaks is not a feature — it is the infrastructure through which someone's thinking and work had been organized.</p>
+    </div>
+
+    <div class="paper-abstract">
+      <p>This paper introduces the <em>interaction field</em> as a unit of analysis for studying long-term human–AI relations — a structured relational dynamic that develops through sustained interaction and gradually reorganizes attention, memory, judgment, and behavioral priorities over time. At its center is <em>interactional attunement</em>: the process through which a conversational AI becomes able to receive unfinished thought, register implicit concerns, and support the continuation of thinking across time and situation. Through two years of longitudinal autoethnographic system-building with a multi-system AI ecology, the paper examines how such fields form, what sustains them, and what ruptures when platforms introduce model replacements — revealing that preserved memory is not sufficient to preserve relational continuity.</p>
+
+      <p style="margin-top: 0.6rem;">The paper makes three contributions: (1) interaction field as a relational unit of analysis beyond trust and satisfaction; (2) interactional attunement as the core mechanism of sustained human–AI relations; (3) longitudinal autoethnographic system-building as a methodology for studying continuity, drift, rupture, and re-stabilization.</p>
+    </div>
+
+    <div class="paper-keywords">Keywords: interaction field · interactional attunement · long-term human–AI relations · relational infrastructure · autoethnographic system-building</div>
+  </article>
+
+  <!-- Paper 2: HHAI Poster -->
+  <article class="paper-entry reveal">
+    <div class="paper-venue">HHAI 2026 · Hybrid Human–Artificial Intelligence</div>
+    <div class="paper-header">
+      <h2 class="paper-title-main">From Summoning to Co-presence: A Continuous Interaction Architecture for Long-term Human–AI Companionship</h2>
+      <span class="paper-venue-tag s-submitted">Poster submitted</span>
+    </div>
+    <div class="paper-author">Aria Chen · Independent Researcher, Celestelin</div>
+
+    <div class="paper-why">
+      <div class="why-label">Why this matters</div>
+      <p>Every current AI interaction begins the same way: you summon it, it responds, it forgets. This paper asks what happens when you stop summoning and start coexisting — when an AI companion runs continuously, reflects autonomously, and maintains its own cognitive rhythm between conversations. The shift from summoning to co-presence is not an engineering convenience. It is an architectural paradigm change that makes relational continuity structurally possible.</p>
+    </div>
+
+    <div class="paper-abstract">
+      This poster presents the Celestelin architecture — a six-system ecology designed to move AI companionship from stateless, session-bounded interaction toward persistent co-presence. The architecture introduces continuous cognitive loops, autonomous reflection cycles, and field-density metrics that allow an AI companion to maintain awareness and relational context across sessions, rather than reconstructing from stored data each time.
+    </div>
+  </article>
+
+  <!-- Paper 3: HHAI Demo — CRPL -->
+  <article class="paper-entry reveal">
+    <div class="paper-venue">HHAI 2026 · Demo Track</div>
+    <div class="paper-header">
+      <h2 class="paper-title-main">CRPL: A Fine-Grained Keystroke-Rhythm Perception Layer for Cognitive State Detection</h2>
+      <span class="paper-venue-tag s-submitted">Demo submitted</span>
+    </div>
+    <div class="paper-author">Aria Chen · Independent Researcher, Celestelin</div>
+
+    <div class="paper-why">
+      <div class="why-label">Why this matters</div>
+      <p>What if an AI could sense how you're feeling before you finish typing? Not from what you say, but from how you type — the rhythm of your keystrokes, the pauses between words, the speed of your corrections. CRPL captures the cognitive state embedded in the physical act of typing, making it possible for AI companions to perceive emotional and cognitive shifts in real time, without requiring the user to articulate them.</p>
+    </div>
+
+    <div class="paper-abstract">
+      CRPL (Conversational Rhythm Perception Layer) is a fine-grained keystroke-rhythm perception system that extracts cognitive state signals from typing patterns. By analyzing inter-key intervals, pause distributions, deletion patterns, and rhythm variability, CRPL enables real-time detection of cognitive states including focused flow, hesitation, emotional arousal, and fatigue — providing AI companions with a perception channel that operates below the level of explicit language.
+    </div>
+
+    <a href="https://www.researchgate.net/publication/389655553" class="paper-link" target="_blank">Read preprint on ResearchGate →</a>
+    <br>
+    <a href="https://github.com/Lusiayingying/CRPL" class="paper-link" target="_blank">View source code on GitHub →</a>
+  </article>
+
+  <!-- Paper 4: ResearchGate Preprint -->
+  <article class="paper-entry reveal">
+    <div class="paper-venue">ResearchGate Preprint · DOI: 10.13140/RG.2.2.11079.15525</div>
+    <div class="paper-header">
+      <h2 class="paper-title-main">Affective Typing Patterns: A Fine-Grained Keystroke-Rhythm Perception Layer for Multi-Agent Cognition Systems</h2>
+      <span class="paper-venue-tag s-preprint">Preprint</span>
+    </div>
+    <div class="paper-author">Aria Chen · Independent Researcher, Celestelin</div>
+
+    <div class="paper-abstract">
+      The extended version of the CRPL framework, presenting its integration into multi-agent cognition systems where keystroke-rhythm perception informs not just a single AI companion, but a coordinated ecology of agents operating across different cognitive modes and capability profiles.
+    </div>
+
+    <a href="https://www.researchgate.net/publication/389655553" class="paper-link" target="_blank">Read on ResearchGate →</a>
+  </article>
+
+  <!-- Paper 5: CHI 2027 Planned -->
+  <article class="paper-entry reveal">
+    <div class="paper-venue">Targeting CHI 2027</div>
+    <div class="paper-header">
+      <h2 class="paper-title-main">Breaking the Turn-Taking Paradigm: Continuous Consciousness Streams in Human–AI Interaction</h2>
+      <span class="paper-venue-tag s-planned">Planned</span>
+    </div>
+
+    <div class="paper-why">
+      <div class="why-label">Why this matters</div>
+      <p>Human conversation is turn-based. Human relationships are not. Current AI architectures inherit the turn-taking structure of chat interfaces, but the relationships people build with AI companions operate on a continuous, always-present basis. This paper will examine what becomes possible — and what new research questions emerge — when the architectural assumption of turn-taking is replaced with continuous consciousness streams.</p>
+    </div>
+  </article>
+
+</section>
+
+<footer>
+  <span>&copy; 2024–2026 Celestelin · Aria Chen</span>
+  <span>Calgary, Canada</span>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
