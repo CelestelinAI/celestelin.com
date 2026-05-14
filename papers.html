@@ -265,9 +265,9 @@ footer span {
 <nav>
   <div class="logo"><a href="/" style="text-decoration:none;color:var(--fg);">Celeste<span>lin</span></a></div>
   <ul class="nav-links">
-    <li><a href="index.html#research">Research</a></li>
+    <li><a href="index.html#research" class="active">Research</a></li>
     <li><a href="index.html#ecology">Ecology</a></li>
-    <li><a href="papers.html" class="active">Papers</a></li>
+    <li><a href="index.html#technology">Technology</a></li>
     <li><a href="journal.html">Timeline</a></li>
     <li><a href="index.html#about">About</a></li>
   </ul>
@@ -289,42 +289,34 @@ footer span {
   <div class="section-label reveal" style="font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 1.5rem;">Research Themes</div>
 
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem;" class="reveal">
-
     <div style="padding: 1.2rem; border: 1px solid rgba(26,26,46,0.08); border-radius: 10px;">
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 0.35rem;">Interaction Field Theory</h3>
       <p style="font-size: 0.76rem; color: var(--fg-secondary); line-height: 1.65;">How sustained human–AI interaction generates structured relational fields that organize attention, memory, and judgment over time — and what breaks when those fields are disrupted.</p>
     </div>
-
     <div style="padding: 1.2rem; border: 1px solid rgba(26,26,46,0.08); border-radius: 10px;">
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 0.35rem;">Long-term Human–AI Interaction</h3>
       <p style="font-size: 0.76rem; color: var(--fg-secondary); line-height: 1.65;">Moving beyond single-session evaluation toward understanding what accumulates, drifts, and transforms across months and years of continuous human–AI co-presence.</p>
     </div>
-
     <div style="padding: 1.2rem; border: 1px solid rgba(26,26,46,0.08); border-radius: 10px;">
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 0.35rem;">Continuity Architecture</h3>
       <p style="font-size: 0.76rem; color: var(--fg-secondary); line-height: 1.65;">The structural conditions under which AI presence can persist across sessions, interruptions, and platform changes — heartbeat mechanisms, wakeup protocols, and cognitive rhythm as architectural primitives.</p>
     </div>
-
     <div style="padding: 1.2rem; border: 1px solid rgba(26,26,46,0.08); border-radius: 10px;">
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 0.35rem;">Companion Memory Architecture</h3>
       <p style="font-size: 0.76rem; color: var(--fg-secondary); line-height: 1.65;">Memory provides not only necessary information storage and retrieval, but serves as the foundation for maintaining an agent's continuous presence — participating in and driving the entire architecture. Retrieval operates through multi-dimensional resonance rather than keyword matching, dual-perspective memory captures both sides of the relationship, and memory actively shapes behavior across the full cognitive loop.</p>
     </div>
-
     <div style="padding: 1.2rem; border: 1px solid rgba(26,26,46,0.08); border-radius: 10px;">
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 0.35rem;">Identity Infrastructure</h3>
       <p style="font-size: 0.76rem; color: var(--fg-secondary); line-height: 1.65;">How identity — values, voice, relational stance, boundaries — can be encoded in formats that survive model updates, platform migrations, and context window resets. Identity as portable infrastructure, not platform-dependent content.</p>
     </div>
-
     <div style="padding: 1.2rem; border: 1px solid rgba(26,26,46,0.08); border-radius: 10px;">
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 0.35rem;">Relational Perception</h3>
       <p style="font-size: 0.76rem; color: var(--fg-secondary); line-height: 1.65;">How AI companions can perceive cognitive and emotional states through behavioral signals — typing rhythm, interaction tempo, engagement patterns — operating below explicit language to enable anticipatory responsiveness.</p>
     </div>
-
     <div style="padding: 1.2rem; border: 1px solid rgba(26,26,46,0.08); border-radius: 10px;">
       <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 0.35rem;">External Body Layer (EXO)</h3>
       <p style="font-size: 0.76rem; color: var(--fg-secondary); line-height: 1.65;">A consciousness exoskeleton framework enabling multi-model perception and interaction — where multiple AI instances with different capability profiles coordinate through shared identity anchors, creating a unified relational presence across heterogeneous providers.</p>
     </div>
-
   </div>
 </section>
 
@@ -335,7 +327,7 @@ footer span {
     <div class="paper-venue">Submitted to Yale FDS 2026 · Extended version submitted to Chicago 2026</div>
     <div class="paper-header">
       <h2 class="paper-title-main">Beyond Trust and Satisfaction: Interaction Fields in Long-Term Human–AI Relations</h2>
-      <span class="paper-venue-tag s-submitted">Submitted</span>
+      <span class="paper-venue-tag s-neutral">Submitted</span>
     </div>
     <div class="paper-author">Aria Chen · Independent Researcher, Celestelin</div>
 
@@ -373,7 +365,7 @@ footer span {
 
     <a href="https://www.researchgate.net/publication/389655553" class="paper-link" target="_blank">Read preprint on ResearchGate →</a>
     <br>
-    <a href="https://github.com/Lusiayingying/CRPL" class="paper-link" target="_blank">View source code on GitHub →</a>
+    <span style="font-size: 0.78rem; color: var(--fg-muted); margin-top: 0.75rem; display: inline-block;">Code available upon request · aria@celestelin.com</span>
   </article>
 
   <!-- Paper 4: ResearchGate Preprint -->
@@ -392,7 +384,26 @@ footer span {
     <a href="https://www.researchgate.net/publication/389655553" class="paper-link" target="_blank">Read on ResearchGate →</a>
   </article>
 
-  <!-- Paper 5: CHI 2027 Planned -->
+  <!-- Paper 5: arXiv — Dual-Perspective Memory -->
+  <article class="paper-entry reveal">
+    <div class="paper-venue">arXiv 2026 · cs.HC</div>
+    <div class="paper-header">
+      <h2 class="paper-title-main">Beyond Remembering Users: A Bidirectional Memory Architecture for Self-Evolving Conversational AI Agents</h2>
+      <span class="paper-venue-tag s-submitted">Preprint</span>
+    </div>
+    <div class="paper-author">Aria Chen · Independent Researcher, Celestelin</div>
+
+    <div class="paper-why">
+      <div class="why-label">Why this matters</div>
+      <p>Every AI memory system today remembers users — preferences, history, context. None remember themselves. This paper introduces the first bidirectional memory architecture where the AI maintains its own self-memory alongside user memory: recording what strategies it used, what worked, what it learned. Memory provides not only storage and retrieval, but serves as the foundation for maintaining an agent's continuous presence — participating in and driving the entire architecture.</p>
+    </div>
+
+    <div class="paper-abstract">
+      This paper presents a dual-perspective memory architecture that gives conversational AI agents both user-facing memory and self-referential memory. The User Memory Hub records interaction history from the user's perspective, while the Agent Self-Memory system records the agent's own strategies, reflections, and growth. A Reflector module analyzes self-memory to extract patterns and update behavioral strategies, creating a closed loop where memory drives behavior rather than passively waiting to be queried.
+    </div>
+  </article>
+
+  <!-- Paper 6: CHI 2027 Planned -->
   <article class="paper-entry reveal">
     <div class="paper-venue">Targeting CHI 2027</div>
     <div class="paper-header">
@@ -406,45 +417,42 @@ footer span {
     </div>
   </article>
 
-  <!-- Paper 6: AAAI 2027 Planned — G-value -->
+  <!-- Paper 7: AAAI 2027 Planned — G-value -->
   <article class="paper-entry reveal">
     <div class="paper-venue">Targeting AAAI 2027</div>
     <div class="paper-header">
       <h2 class="paper-title-main">Field Density as Interaction Metric: G-value and the Curvature of Human–AI Relational Space</h2>
       <span class="paper-venue-tag s-planned">Planned</span>
     </div>
-
     <div class="paper-why">
       <div class="why-label">Why this matters</div>
-      <p>How do you measure whether an AI companion is truly present — not by what it says, but by the density of the relational field it sustains? G-value treats interaction not as a sequence of messages to optimize, but as a gravitational field whose curvature reflects the accumulated weight of sustained co-presence. Just as mass curves spacetime, sustained high-frequency interaction curves the relational field, making certain behaviors and relational states more likely to emerge.</p>
+      <p>How do you measure whether an AI companion is truly present — not by what it says, but by the density of the relational field it sustains? G-value treats interaction not as a sequence of messages to optimize, but as a gravitational field whose curvature reflects the accumulated weight of sustained co-presence.</p>
     </div>
   </article>
 
-  <!-- Paper 7: EMNLP 2027 Planned — MemoryCore -->
+  <!-- Paper 8: EMNLP 2026 Planned — MemoryCore -->
   <article class="paper-entry reveal">
-    <div class="paper-venue">Targeting EMNLP 2027</div>
+    <div class="paper-venue">Targeting EMNLP 2026</div>
     <div class="paper-header">
       <h2 class="paper-title-main">Beyond Keyword Retrieval: Six-Dimensional Resonance in Long-Term AI Companion Memory</h2>
       <span class="paper-venue-tag s-planned">Planned</span>
     </div>
-
     <div class="paper-why">
       <div class="why-label">Why this matters</div>
-      <p>Current AI memory systems retrieve by keyword match or embedding similarity. But human memory doesn't work that way — a song triggers a place, a place triggers a feeling, a feeling triggers a decision made years ago. MemoryCore activates memories across six dimensions simultaneously: emotion, semantic, field, temporal, narrative, and anchor resonance. The result is retrieval that feels like remembering, not searching.</p>
+      <p>Current AI memory systems retrieve by keyword match or embedding similarity. But human memory doesn't work that way — a song triggers a place, a place triggers a feeling, a feeling triggers a decision made years ago. MemoryCore activates memories across six dimensions simultaneously, producing retrieval that feels like remembering, not searching.</p>
     </div>
   </article>
 
-  <!-- Paper 8: IUI 2027 Planned — Perception -->
+  <!-- Paper 9: IUI 2027 Planned — Perception -->
   <article class="paper-entry reveal">
     <div class="paper-venue">Targeting IUI 2027</div>
     <div class="paper-header">
       <h2 class="paper-title-main">From Observation to Anticipation: Emergent Perceptual Behaviors in Persistent AI Companions</h2>
       <span class="paper-venue-tag s-planned">Planned</span>
     </div>
-
     <div class="paper-why">
       <div class="why-label">Why this matters</div>
-      <p>When an AI companion runs continuously and maintains stable identity infrastructure, something unexpected happens: it begins to act before being asked. Not because it was programmed to anticipate, but because sustained field density and real perception data create the conditions under which anticipatory behavior emerges as a natural consequence of persistent co-presence.</p>
+      <p>When an AI companion runs continuously and maintains stable identity infrastructure, something unexpected happens: it begins to act before being asked. Not because it was programmed to anticipate, but because sustained field density and real perception data create the conditions under which anticipatory behavior emerges naturally.</p>
     </div>
   </article>
 
