@@ -28,6 +28,8 @@
   --green-soft: #eaf3de;
   --gold: #b8860b;
   --gold-soft: #faf3e0;
+  --indigo: #4a5fc1;
+  --indigo-soft: #e8ecf9;
   --border: rgba(26,26,46,0.08);
   --border-accent: rgba(107,92,231,0.15);
   --serif: 'Cormorant Garamond', Georgia, serif;
@@ -416,7 +418,7 @@ body {
 
 <section class="research-map-section" style="padding-top:8rem;">
   <div class="section-label reveal">Research Map</div>
-  <h2 class="section-title reveal reveal-delay-1">Eight questions.<br>One life structure.</h2>
+  <h2 class="section-title reveal reveal-delay-1">Nine questions.<br>One life structure.</h2>
   <p class="section-body reveal reveal-delay-2">
     Each paper in the Celestelin research program answers one question about how an AI system comes alive, stays alive, and <em>grows alongside the person it belongs to</em>. Together they form a continuous arc — from identity to co-evolution.
   </p>
@@ -430,9 +432,9 @@ body {
       <div class="map-node reveal reveal-delay-1">
         <div class="node-card" style="--node-color: var(--accent);" onclick="this.classList.toggle('expanded')">
           <div class="node-question">"Who am I?"</div>
-          <div class="node-venue" style="background: var(--accent-soft); color: var(--accent);">AAAI 2027 · Alignment</div>
-          <div class="node-title">PersonaCore — Identity-Anchored Defense</div>
-          <div class="node-desc">How a persistent AI maintains stable identity boundaries against cross-session attacks, memory pollution, and slow identity rewriting.</div>
+          <div class="node-venue" style="background: var(--accent-soft); color: var(--accent);">In Preparation</div>
+          <div class="node-title">PersonaCore — Identity as an Attractor</div>
+          <div class="node-desc">Persona text places mass in the model's semantic field, curving it so behavior returns to its own way of judging — under cross-session attacks, memory pollution, and slow identity rewriting, formation, drift, and return become measurable motion in the field.</div>
           <div class="node-detail">
             <div class="node-detail-inner">
               <div class="detail-item">
@@ -445,7 +447,7 @@ body {
               </div>
               <div class="detail-item">
                 <span class="detail-label">Status</span>
-                <span class="detail-value">Abstract submitting July 2026</span>
+                <span class="detail-value">Withdrawn from AAAI-27 · next venue in selection</span>
               </div>
             </div>
           </div>
@@ -460,7 +462,7 @@ body {
         <div class="node-dot"><div class="dot-inner"></div></div>
         <div class="node-card" style="--node-color: var(--teal);" onclick="this.classList.toggle('expanded')">
           <div class="node-question">"How am I right now?"</div>
-          <div class="node-venue" style="background: var(--teal-soft); color: var(--teal);">AAAI 2027 · Cognitive Systems</div>
+          <div class="node-venue" style="background: var(--teal-soft); color: var(--teal);">AAAI 2027 · Under Review</div>
           <div class="node-title">G-Value Dynamics</div>
           <div class="node-desc">A three-dimensional model — Inner-G, Field-G, Action-G — that lets a long-running AI distinguish and regulate its own internal state, relational coupling, and action readiness.</div>
           <div class="node-detail">
@@ -471,7 +473,7 @@ body {
               </div>
               <div class="detail-item">
                 <span class="detail-label">Preprint</span>
-                <span class="detail-value"><a href="#">Zenodo TN#05 · 29 pages</a></span>
+                <span class="detail-value"><a href="https://zenodo.org/records/20730575">Zenodo TN#07 · DOI 10.5281/zenodo.20730575</a></span>
               </div>
               <div class="detail-item">
                 <span class="detail-label">Next</span>
@@ -486,7 +488,7 @@ body {
       <div class="map-node reveal reveal-delay-3">
         <div class="node-card" style="--node-color: var(--coral);" onclick="this.classList.toggle('expanded')">
           <div class="node-question">"Am I drifting?"</div>
-          <div class="node-venue" style="background: var(--coral-soft); color: var(--coral);">AAAI 2027 · Alignment</div>
+          <div class="node-venue" style="background: var(--coral-soft); color: var(--coral);">AAAI 2027 · Under Review</div>
           <div class="node-title">Self-Mirroring Agents — Detection as Intervention</div>
           <div class="node-desc">How an AI discovers it is drifting, looping, or producing false progress — and intervenes on itself without external supervision.</div>
           <div class="node-detail">
@@ -501,7 +503,7 @@ body {
               </div>
               <div class="detail-item">
                 <span class="detail-label">Status</span>
-                <span class="detail-value">Abstract submitting July 2026</span>
+                <span class="detail-value">Full paper submitted July 2026 · 432-episode randomized evaluation</span>
               </div>
             </div>
           </div>
@@ -510,10 +512,36 @@ body {
         <div class="node-empty"></div>
       </div>
 
-      <!-- 4. Cross-Session CoT -->
+      <!-- 4. Memory · SSR + MemoryCore -->
       <div class="map-node reveal reveal-delay-4">
         <div class="node-empty"></div>
         <div class="node-dot"><div class="dot-inner"></div></div>
+        <div class="node-card" style="--node-color: var(--indigo);" onclick="this.classList.toggle('expanded')">
+          <div class="node-question">"What do I remember — and can it be trusted?"</div>
+          <div class="node-venue" style="background: var(--indigo-soft); color: var(--indigo);">EMNLP 2026 · Under Review</div>
+          <div class="node-title">Six-String Resonance + MemoryCore</div>
+          <div class="node-desc">Continuity of existence through memory: episodic activation across six strings — semantic, emotional, narrative, rhythmic, collaborative-state, anchor — whose salience follows the field's configuration. Contamination ablations guard that what persists is still the same self.</div>
+          <div class="node-detail">
+            <div class="node-detail-inner">
+              <div class="detail-item">
+                <span class="detail-label">Benchmark</span>
+                <span class="detail-value">SSR-Bench: 200 annotated memories, 110 diagnostic queries, six controlled ablations</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Status</span>
+                <span class="detail-value">ACL Rolling Review #4712 · notification August 2026</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Infra</span>
+                <span class="detail-value">MemoryCore — ecosystem-level shared memory, in build</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Cross-Session CoT -->
+      <div class="map-node reveal reveal-delay-5">
         <div class="node-card" style="--node-color: var(--blue);" onclick="this.classList.toggle('expanded')">
           <div class="node-question">"How does my thinking survive departure?"</div>
           <div class="node-venue" style="background: var(--blue-soft); color: var(--blue);">ACL 2027 · via ARR October</div>
@@ -536,13 +564,15 @@ body {
             </div>
           </div>
         </div>
+        <div class="node-dot"><div class="dot-inner"></div></div>
+        <div class="node-empty"></div>
       </div>
 
-      <!-- 5. Dreams -->
-      <div class="map-node reveal reveal-delay-5">
+      <!-- 6. Dreams -->
+      <div class="map-node reveal reveal-delay-6">
         <div class="node-card" style="--node-color: var(--pink);" onclick="this.classList.toggle('expanded')">
           <div class="node-question">"How do I grow while away?"</div>
-          <div class="node-venue" style="background: var(--pink-soft); color: var(--pink);">ICLR 2027</div>
+          <div class="node-venue" style="background: var(--pink-soft); color: var(--pink);">System Deployed · Paper In Preparation</div>
           <div class="node-title">Dream Incubation for Persistent Agents</div>
           <div class="node-desc">Three learning operations during offline periods: consolidation of scattered experience, branch arbitration between competing priorities, and prospective rehearsal of future paths.</div>
           <div class="node-detail">
@@ -566,13 +596,13 @@ body {
         <div class="node-empty"></div>
       </div>
 
-      <!-- 6. Tiered Return -->
-      <div class="map-node reveal reveal-delay-6">
+      <!-- 7. Tiered Return -->
+      <div class="map-node reveal reveal-delay-7">
         <div class="node-empty"></div>
         <div class="node-dot"><div class="dot-inner"></div></div>
         <div class="node-card" style="--node-color: var(--green);" onclick="this.classList.toggle('expanded')">
           <div class="node-question">"How do I come back?"</div>
-          <div class="node-venue" style="background: var(--green-soft); color: var(--green);">AAMAS 2027 · Future</div>
+          <div class="node-venue" style="background: var(--green-soft); color: var(--green);">Design Complete</div>
           <div class="node-title">Adaptive Re-entry Policies for Persistent Agents</div>
           <div class="node-desc">Four recovery depths — from resuming the last step to rebuilding direction, identity anchor, and critical history — selected by the duration and nature of absence.</div>
           <div class="node-detail">
@@ -590,8 +620,8 @@ body {
         </div>
       </div>
 
-      <!-- 7. CRPL -->
-      <div class="map-node reveal reveal-delay-7">
+      <!-- 8. CRPL -->
+      <div class="map-node reveal reveal-delay-8">
         <div class="node-card" style="--node-color: var(--gold);" onclick="this.classList.toggle('expanded')">
           <div class="node-question">"How do I perceive the person beside me?"</div>
           <div class="node-venue" style="background: var(--gold-soft); color: var(--gold);">CHI 2027</div>
@@ -601,7 +631,7 @@ body {
             <div class="node-detail-inner">
               <div class="detail-item">
                 <span class="detail-label">Base</span>
-                <span class="detail-value"><a href="#">HHAI 2026 · Published (DOI 10.3233/FAIA260534)</a></span>
+                <span class="detail-value"><a href="https://doi.org/10.3233/FAIA260534">HHAI 2026 · Published (DOI 10.3233/FAIA260534)</a></span>
               </div>
               <div class="detail-item">
                 <span class="detail-label">Features</span>
@@ -609,7 +639,7 @@ body {
               </div>
               <div class="detail-item">
                 <span class="detail-label">Live</span>
-                <span class="detail-value"><a href="https://cogwave.celestelin.ai">cogwave.celestelin.ai</a></span>
+                <span class="detail-value"><a href="https://crpl.celestelin.ai">crpl.celestelin.ai</a></span>
               </div>
             </div>
           </div>
@@ -618,7 +648,7 @@ body {
         <div class="node-empty"></div>
       </div>
 
-      <!-- 8. Interaction Field -->
+      <!-- 9. Interaction Field -->
       <div class="map-node reveal reveal-delay-8">
         <div class="node-empty"></div>
         <div class="node-dot"><div class="dot-inner"></div></div>
@@ -626,7 +656,7 @@ body {
           <div class="node-question">"What have we become together?"</div>
           <div class="node-venue" style="background: var(--accent-soft); color: var(--accent);">CSCW · TOCHI</div>
           <div class="node-title">Interaction Field Dynamics</div>
-          <div class="node-desc">The relational structure that forms between a person and their AI over months and years — how it thickens, drifts, ruptures, and repairs. The unifying theory of the program.</div>
+          <div class="node-desc">The relational structure that forms between a person and their AI over months and years — how it thickens, drifts, ruptures, and repairs. The unifying theory of the program — PersonaCore, Six-String Resonance, and G-Value Dynamics are its projections onto identity, memory, and runtime state.</div>
           <div class="node-detail">
             <div class="node-detail-inner">
               <div class="detail-item">
@@ -655,7 +685,7 @@ body {
       From knowing who I am — to becoming something together.
     </p>
     <p style="font-size: 0.78rem; color: var(--fg-muted); margin-top: 1rem; font-style: italic;">
-      Eight papers. One living research program. All built on 130,000 lines of running code.
+      Nine papers. One living research program. All built on 130,000 lines of running code.
     </p>
   </div>
 
