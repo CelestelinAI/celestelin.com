@@ -107,7 +107,18 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem
 .arc small{display:block;margin-top:.9rem;font-size:.8rem;color:var(--muted)}
 .foot{margin-top:3rem;padding-top:1.1rem;border-top:1px solid var(--border);font-size:.76rem;color:var(--muted)}
 
-@media (max-width:640px){.hero{padding-block:2.6rem 1.4rem}.grid{grid-template-columns:1fr}}
+.keeps{margin-top:4rem;padding-top:2.2rem;border-top:1px solid var(--border)}
+.keeps-lede{color:var(--fg2);font-size:.9rem;max-width:640px;margin:0 0 .6rem}
+.kgroup{margin-top:1.8rem}
+.kgroup .label{margin-bottom:.2rem}
+.kp{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:.15rem 1.4rem;align-items:baseline;padding:.75rem 0;border:0;border-bottom:1px solid var(--border);color:var(--fg)}
+.kp:hover .kv{color:var(--accent)}
+.kn{font-size:.86rem;font-weight:400;color:var(--fg2)}
+.kv{font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.32rem;line-height:1.35;color:var(--fg);transition:color .2s ease}
+.lang-zh .kv{font-family:var(--serif-zh);font-style:normal;font-size:1.04rem}
+.kv small{display:block;font-family:var(--mono);font-style:normal;font-weight:300;font-size:.6rem;letter-spacing:.08em;color:var(--muted);margin-top:.2rem}
+
+@media (max-width:640px){.hero{padding-block:2.6rem 1.4rem}.grid{grid-template-columns:1fr}.kp{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -174,6 +185,39 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem
   </div>
 
   <div id="cards"></div>
+
+  <section class="keeps" aria-labelledby="keepsH">
+    <div class="label"><span class="en">What each piece keeps</span><span class="zh">每一块守着什么</span></div>
+    <h2 id="keepsH"><span class="en">Every piece keeps one thing.</span><span class="zh">每一块，守着一样东西。</span></h2>
+    <p class="keeps-lede"><span class="en">Each paper takes responsibility for one property that a long-running human–AI system has to keep. Read together, they are the program.</span><span class="zh">每一篇论文，替长期运行的人机系统守住一样东西。连起来读，就是整个研究计划。</span></p>
+    <div class="kgroup">
+      <div class="label"><span class="en">Above the water</span><span class="zh">水面上</span></div>
+      <a class="kp" href="#card-crpl"><span class="kn">CRPL</span><span class="kv"><span class="en">human-state perception</span><span class="zh">人的状态被感知到<small>human-state perception</small></span></span></a>
+      <a class="kp" href="#card-duplex"><span class="kn">The Second Microphone</span><span class="kv"><span class="en">mid-task steerability</span><span class="zh">做事途中随时能改方向<small>mid-task steerability</small></span></span></a>
+      <a class="kp" href="#card-iii"><span class="kn">Identity Is Infrastructure</span><span class="kv"><span class="en">anchored alignment</span><span class="zh">有锚点的对齐，所以可信<small>anchored alignment</small></span></span></a>
+    </div>
+    <div class="kgroup">
+      <div class="label"><span class="en">At the waterline</span><span class="zh">水线</span></div>
+      <a class="kp" href="#card-neg"><span class="kn">The Negation Tax</span><span class="kv"><span class="en">cognitive bandwidth</span><span class="zh">人的认知余量，能动性留在人手里<small>cognitive bandwidth</small></span></span></a>
+      <a class="kp" href="#card-cog"><span class="kn">CogWave</span><span class="kv"><span class="en">cognitive-path observability</span><span class="zh">思考走过的路看得见<small>cognitive-path observability</small></span></span></a>
+    </div>
+    <div class="kgroup">
+      <div class="label"><span class="en">Below the water</span><span class="zh">水面下</span></div>
+      <a class="kp" href="#card-ssr"><span class="kn">SSR + MemoryCore</span><span class="kv"><span class="en">relevant recall</span><span class="zh">此刻该想起的过去被找回<small>relevant recall</small></span></span></a>
+      <a class="kp" href="#card-tp"><span class="kn">ThreadPulse</span><span class="kv"><span class="en">task resumability</span><span class="zh">工作从对的位置接上<small>task resumability</small></span></span></a>
+      <a class="kp" href="#card-am"><span class="kn">Awareness Mirror</span><span class="kv"><span class="en">trajectory observability</span><span class="zh">走过的路看得见<small>trajectory observability</small></span></span></a>
+      <a class="kp" href="#card-val"><span class="kn">AI values</span><span class="kv"><span class="en">person-centered safety</span><span class="zh">以人为本的安全<small>person-centered safety</small></span></span></a>
+      <a class="kp" href="#card-g"><span class="kn">G-Value</span><span class="kv"><span class="en">state calibration</span><span class="zh">状态读得准，读不准先怀疑自己<small>state calibration</small></span></span></a>
+    </div>
+    <div class="kgroup">
+      <div class="label"><span class="en">The base</span><span class="zh">底座</span></div>
+      <a class="kp" href="#card-pc"><span class="kn">PersonaCore</span><span class="kv"><span class="en">identity continuity</span><span class="zh">身份连续<small>identity continuity</small></span></span></a>
+    </div>
+    <div class="kgroup">
+      <div class="label"><span class="en">The sea</span><span class="zh">海水</span></div>
+      <a class="kp" href="#card-ifd"><span class="kn">Interaction Field Dynamics</span><span class="kv"><span class="en">field transparency</span><span class="zh">交互场看得见、走向可预测<small>field transparency</small></span></span></a>
+    </div>
+  </section>
 
   <div class="arc">
     <div class="label"><span class="en">The arc</span><span class="zh">这条弧线</span></div>
