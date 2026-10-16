@@ -142,10 +142,9 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem
 
   <div class="figure">
     <svg id="berg" viewBox="0 0 960 770" role="img" aria-labelledby="bergTitle">
-      <title id="bergTitle">Iceberg map: human–AI interaction above the water, language at the waterline, trust mechanisms below it with G-Value as the axis and PersonaCore as the base, the interaction field as the sea, and the Celestelin platform as the ground.</title>
+      <title id="bergTitle">Iceberg map: human–AI interaction above the water, language at the waterline, trust mechanisms side by side below it with PersonaCore as the base, the interaction field as the sea, and the Celestelin platform as the ground.</title>
       <defs>
         <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sea1)"/><stop offset="1" stop-color="var(--sea2)"/></linearGradient>
-        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--agents)"/></marker>
       </defs>
       <rect x="0" y="0" width="960" height="206" fill="var(--sky)"/>
       <rect x="0" y="206" width="960" height="480" fill="url(#sea)"/>
@@ -169,15 +168,9 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem
       <g stroke="var(--accent)" stroke-dasharray="3 4" stroke-width="1.1" opacity=".45">
         <line x1="300" y1="554" x2="300" y2="482"/><line x1="660" y1="554" x2="660" y2="482"/><line x1="480" y1="554" x2="480" y2="530"/>
       </g>
-      <g stroke="var(--agents)" stroke-width="1.5" fill="none">
-        <line x1="400" y1="340" x2="418" y2="340" marker-end="url(#ar)"/>
-        <line x1="400" y1="446" x2="418" y2="446" marker-end="url(#ar)"/>
-        <line x1="560" y1="340" x2="542" y2="340" marker-end="url(#ar)"/>
-        <line x1="560" y1="446" x2="542" y2="446" marker-end="url(#ar)"/>
-      </g>
       <g id="nodes"></g>
     </svg>
-    <p class="figcap"><span class="en">The sea is the interaction field that grows between a person and an AI. G-Value runs through the iceberg as its axis: memory, attention, awareness and values all report to it. PersonaCore is the base under every architecture, and the whole structure stands on a system that has been running since April 2025.</span><span class="zh">海水是人和 AI 一起长出来的交互场。G 值是贯穿冰山的中轴：记忆、注意力、觉察、价值的信号都汇到它那里。PersonaCore 是底座，挂在每一个架构下面。整座冰山立在一个 2025 年 4 月起持续运行的系统上。</span></p>
+    <p class="figcap"><span class="en">The sea is the interaction field that grows between a person and an AI. Below the water, memory, trajectory, active work, runtime state and values sit side by side and together form the agent's longitudinal state. PersonaCore, the identity anchor, sits beneath every architecture, and the whole structure stands on a system that has been running since April 2025.</span><span class="zh">海水是人和 AI 一起长出来的交互场。水面下，记忆、轨迹、手头的工作、运行时状态和价值并排在一起，共同构成 agent 的长期状态。PersonaCore 是身份锚，挂在每一个架构下面。整座冰山立在一个 2025 年 4 月起持续运行的系统上。</span></p>
   </div>
 
   <div id="cards"></div>
@@ -250,12 +243,12 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem
      d:['Safety that starts from the person: a safety mechanism exists to protect people, and its own triggers must hold up to scrutiny. Memory has value boundaries too, so every memory is marked as fact, opinion, sourced information or judgment.','以保护主体为出发点的安全观：安全机制是为了保护人，它自己的触发也要经得起检验。记忆同样有价值边界，每一条都标明是事实、观点、带来源的信息，还是判断。'],
      gate:['safety that turns into harm','安全本身变成伤害'],
      status:['Preprint','预印本'], links:[['https://doi.org/10.5281/zenodo.20728732','DOI']]},
-    {id:'g', layer:'below', f:['agents','trust'], box:[420,292,120,230,'axis'], title:'G-Value', sub:['runtime state','运行时状态'],
+    {id:'g', layer:'below', f:['agents','trust'], box:[420,292,120,230,'axis'], title:'G-Value', sub:['inner · field · action','内在 · 场 · 行动'],
      q:['"How am I right now?"','"我此刻怎么样？"'],
-     d:['Three dimensions (inner, field, action) read from 13 real-time signals. Every other module reports into it, which makes it the axis of the iceberg, and it doubts its own reading when the state looks contaminated or frozen. More than <span class="n">21,660</span> heartbeat records.','内在、场、行动三个维度，来自 13 路实时信号。其他模块的信号都汇到这里，所以它是冰山的中轴；状态看起来被污染或卡死时，它先怀疑自己的读数。超过 <span class="n">21,660</span> 条心跳记录。'],
+     d:['The agent\'s runtime state in three dimensions (inner, field and action), read from 13 real-time signals. It sits beside memory, trajectory and active work as one part of the agent\'s longitudinal state, and it doubts its own reading when the state looks contaminated or frozen. More than <span class="n">21,660</span> heartbeat records.','agent 的运行时状态，分内在、场、行动三个维度，来自 13 路实时信号。它和记忆、轨迹、手头的工作并列，一起构成 agent 的长期状态；状态看起来被污染或卡死时，它先怀疑自己的读数。超过 <span class="n">21,660</span> 条心跳记录。'],
      gate:['acting on a reading that cannot be trusted','按不可信的读数行动'],
      status:['Preprint','预印本'], links:[['https://doi.org/10.5281/zenodo.20730575','DOI']]},
-    {id:'pc', layer:'base', f:['trust','agents'], box:[230,556,500,58,'base'], title:'PersonaCore', sub:['identity anchor under every architecture','挂在每个架构下的身份锚'],
+    {id:'pc', layer:'base', f:['trust','agents'], box:[230,556,500,58,'base'], title:'PersonaCore · Identity Continuity', sub:['the identity anchor every architecture shares','每个架构共用的身份锚'],
      q:['"Who am I?"','"我是谁？"'],
      d:['An identity distilled from two years of daily interaction, memory and behavior, now mounted under every Celestelin architecture: conduct, value order, ways of thinking and speaking. Built from 37 identity files across 4 platforms and 3 model generations. Next: does a persistent identity add protection under adversarial pressure?','从两年的日常互动、记忆和行为里沉淀出的身份，现在挂在 Celestelin 的每一个架构下：行为准则、价值排序、思维和表达方式。来自 37 份身份文件、4 个平台、3 代模型。下一步：持久的身份能不能在对抗压力下多一层保护？'],
      gate:['identity quietly rewritten','身份被悄悄改写'],
@@ -293,11 +286,9 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem
     if (kind==='ground'){ r.setAttribute('style','fill:var(--card)'); }
     var cx = x + w/2;
     if (kind==='axis'){
-      var t1 = el('text',{x:cx,y:y+26,'text-anchor':'middle','class':'t-mono'},grp); bi(t1,['AXIS','中轴']);
+      var t1 = el('text',{x:cx,y:y+26,'text-anchor':'middle','class':'t-mono'},grp); bi(t1,['STATE','状态']);
       var t2 = el('text',{x:cx,y:y+60,'text-anchor':'middle','font-size':'21','font-weight':'500',style:'fill:var(--agents)'},grp); t2.textContent = it.title;
       var t3 = el('text',{x:cx,y:y+86,'text-anchor':'middle','class':'t-sub'},grp); bi(t3,it.sub);
-      var t4 = el('text',{x:cx,y:y+132,'text-anchor':'middle','class':'t-sub'},grp); bi(t4,['every module','各模块的信号']);
-      var t5 = el('text',{x:cx,y:y+149,'text-anchor':'middle','class':'t-sub'},grp); bi(t5,['reports here','都汇到这里']);
     } else if (kind==='box' || kind==='base' || kind==='ground'){
       var a = el('text',{x:cx,y:y+(kind==='ground'?20:26),'text-anchor':'middle','font-size':kind==='base'?'15':'13.5','font-weight':'500'},grp); a.textContent = it.title;
       if (kind==='base') a.setAttribute('style','fill:var(--accent)');
