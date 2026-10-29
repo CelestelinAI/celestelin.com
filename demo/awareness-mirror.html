@@ -233,9 +233,9 @@ svg .grid{stroke:var(--wash);stroke-width:1;fill:none}
           <text x="240" y="352" font-size="14" fill="var(--mirror)">10 of 18 stayed out of loops, and all 10 finished</text>
         </g>
         <g data-s="6" data-e="6">
-          <rect x="666" y="112" width="216" height="200" rx="6" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4"/>
-          <text x="774" y="100" text-anchor="middle" font-size="14" class="mut">6 runs on levels with no exit</text>
-          <text x="774" y="390" text-anchor="middle" font-size="13" class="mut">no group could finish these</text>
+          <rect x="686" y="118" width="230" height="190" rx="6" fill="var(--panel)" opacity=".62"/>
+          <text x="801" y="106" text-anchor="middle" font-size="14" class="mut">6 runs on levels with no exit</text>
+          <text x="801" y="328" text-anchor="middle" font-size="13" class="mut">no group could finish these</text>
           <text x="60" y="410" font-size="15">Levels with an exit: Mirror finished <tspan class="m" fill="var(--mirror)">10 of 12</tspan>, Snapshot <tspan class="m" fill="var(--snap)">2 of 12</tspan></text>
         </g>
       </svg>
@@ -373,11 +373,12 @@ svg .grid{stroke:var(--wash);stroke-width:1;fill:none}
   const sx=240, gap=36;
   const snapG=document.getElementById("snapTiles"), mirG=document.getElementById("mirTiles");
   for(let i=0;i<18;i++){
-    el("rect",{x:sx+i*gap,y:128,width:30,height:30,rx:4,fill:"var(--snap)",opacity:.85},snapG);
-    el("text",{x:sx+i*gap+15,y:149,"text-anchor":"middle","font-size":15,fill:"#fff"},snapG,"↻");
+    const X=sx+i*gap+(i>=12?24:0);
+    el("rect",{x:X,y:128,width:30,height:30,rx:4,fill:"var(--snap)",opacity:.85},snapG);
+    el("text",{x:X+15,y:149,"text-anchor":"middle","font-size":15,fill:"#fff"},snapG,"↻");
     const ok=i<10;
-    el("rect",{x:sx+i*gap,y:268,width:30,height:30,rx:4,fill:ok?"var(--mirror)":"var(--faint)"},mirG);
-    el("text",{x:sx+i*gap+15,y:289,"text-anchor":"middle","font-size":15,fill:ok?"#fff":"var(--muted)"},mirG,ok?"✓":"↻");
+    el("rect",{x:X,y:268,width:30,height:30,rx:4,fill:ok?"var(--mirror)":"var(--faint)"},mirG);
+    el("text",{x:X+15,y:289,"text-anchor":"middle","font-size":15,fill:ok?"#fff":"var(--muted)"},mirG,ok?"✓":"↻");
   }
 
   // relay of five agents
