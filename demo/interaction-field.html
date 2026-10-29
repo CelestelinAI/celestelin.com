@@ -229,6 +229,36 @@ svg .mut{fill:var(--muted)}
       </div>
     </section>
 
+    <!-- 4b · one result -->
+    <section class="scene" data-name="One result" data-steps="3">
+      <div class="kicker">Study 1 · one result</div>
+      <h2>The current State carries a signal about what comes next</h2>
+      <svg viewBox="0 0 960 480" role="img" aria-label="AUROC for upcoming correction across ten representations A to H in two independent sets">
+        <g>
+          <text x="40" y="26" class="disp" font-size="20" font-style="italic">“Will the next speaker correct this turn?”</text>
+          <rect x="560" y="13" width="22" height="8" rx="2" fill="var(--muted)" opacity=".55"/><text x="588" y="22" font-size="12" class="mut">set 1 · 12 conversations</text>
+          <rect x="740" y="13" width="22" height="8" rx="2" fill="var(--muted)"/><text x="768" y="22" font-size="12" class="mut">set 2 · 16 conversations</text>
+          <line x1="330" y1="44" x2="330" y2="440" stroke="var(--faint)"/>
+          <line x1="625" y1="44" x2="625" y2="440" stroke="var(--faint)" stroke-dasharray="1 5"/>
+          <line x1="772.5" y1="44" x2="772.5" y2="440" stroke="var(--faint)" stroke-dasharray="1 5"/>
+          <line id="chance" x1="477.5" y1="44" x2="477.5" y2="440" stroke="var(--ink)" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <text x="477.5" y="458" text-anchor="middle" font-size="12" fill="var(--ink)">coin flip · .50</text>
+          <text x="330" y="458" text-anchor="middle" font-size="12" class="mut m">.40</text>
+          <text x="625" y="458" text-anchor="middle" font-size="12" class="mut m">.60</text>
+          <text x="772.5" y="458" text-anchor="middle" font-size="12" class="mut m">.70</text>
+          <text x="920" y="476" text-anchor="end" font-size="12" class="mut">longer = better →</text>
+        </g>
+        <g data-s="1" id="raceInfo"></g>
+        <g data-s="2" id="raceField"></g>
+        <g data-s="3" id="raceHi"></g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">Seven ways to hand the history over as text, from the last turn to the whole conversation.</p><span class="zh" data-c="1">七种把历史当文字交给模型的方法，从只看最后一轮到整段对话全给。</span>
+        <p data-c="2">Three field readings: State, then State plus Action, then plus Flow.</p><span class="zh" data-c="2">三种场的读数：State，再加 Action，再加 Flow。</span>
+        <p data-c="3">Whole-history embeddings stay near a coin flip. The 16-number State reaches .70 in both sets. It carries predictive signal about the next turn, while the next turn remains open.</p><span class="zh" data-c="3">整段历史的嵌入停在抛硬币附近；16 个数的 State 在两批数据里都到了 .70。它带着关于下一轮的预测信号，下一轮本身依然是开放的。</span>
+      </div>
+    </section>
+
     <!-- 5 · close -->
     <section class="scene" data-name="In three lines" data-steps="2">
       <div class="kicker">Interaction Field Dynamics</div>
@@ -351,6 +381,27 @@ svg .mut{fill:var(--muted)}
     if(d2)el("path",{d:d2,fill:"none",stroke:"var(--gold)","stroke-width":2.2,"stroke-linecap":"round"},fg);
     el("text",{x:x0+w/2,y:y0+h+22,"text-anchor":"middle","font-size":13},fg,name);
   });
+
+  // Study 1 race: best AUROC per condition, from the paper's table
+  (function(){
+    const rows=[["A","current turn",.582,.599],["B","current turn + surface cues",.571,.625],["C3","last 3 turns",.540,.529],["C5","last 5 turns",.610,.593],
+      ["D1","content summary",.492,.456],["D2","dynamics summary",.599,.678],["E","whole history",.457,.497],
+      ["F","State · 16 numbers",.702,.700],["G","+ Action · 24 numbers",.713,.730],["H","+ Flow · 37 numbers",.685,.734]];
+    const X=v=>330+(v-.4)*1475, C=X(.5), gi=document.getElementById("raceInfo"), gf=document.getElementById("raceField"), gh=document.getElementById("raceHi");
+    rows.forEach((r,i)=>{const field=i>=7;const y=56+i*37+(field?14:0);const g=field?gf:gi;
+      const col=field?"var(--field)":"var(--info)";
+      el("text",{x:40,y:y+16,"font-size":18,class:"m","font-weight":500,fill:field?"var(--field2)":"var(--ink)"},g,r[0]);
+      el("text",{x:84,y:y+16,"font-size":14,fill:field?"var(--field2)":"var(--muted)"},g,r[1]);
+      el("rect",{x:330,y:y+2,width:X(r[2])-330,height:9,rx:2,fill:col,opacity:.5},g);
+      el("rect",{x:330,y:y+13,width:X(r[3])-330,height:9,rx:2,fill:col},g);
+      el("text",{x:840,y:y+17,"font-size":14,class:"m",fill:field?"var(--field2)":"var(--muted)"},g,r[2].toFixed(3).slice(1)+" · "+r[3].toFixed(3).slice(1));
+    });
+    el("line",{x1:40,y1:56+7*37+4,x2:920,y2:56+7*37+4,stroke:"var(--faint)"},gf);
+    // highlights: E and F
+    const yE=56+6*37, yF=56+7*37+14;
+    el("rect",{x:30,y:yE-4,width:916,height:31,rx:6,fill:"none",stroke:"var(--warm)","stroke-width":1.5},gh);
+    el("rect",{x:30,y:yF-4,width:916,height:31,rx:6,fill:"var(--field)","fill-opacity":.08,stroke:"var(--field2)","stroke-width":1.5},gh);
+  })();
 
   // deck logic
   const scenes=[...document.querySelectorAll(".scene")];
