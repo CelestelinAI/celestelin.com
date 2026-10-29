@@ -45,6 +45,16 @@ svg .mut{fill:var(--muted)}
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
 @keyframes drift{to{transform:rotate(360deg)}}
 @keyframes ripple{0%{transform:scale(.25);opacity:.9}100%{transform:scale(1);opacity:0}}
+.studies{display:grid;grid-template-columns:minmax(0,15em) minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--faint);margin-top:6px}
+.studies .hd{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:6px 10px 6px 0}
+.studies .row{display:contents}
+.studies .c{padding:10px 12px 10px 0;border-bottom:1px solid var(--faint);font-size:14px;line-height:1.45;min-width:0}
+.studies .q b{display:block;font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.08em;color:var(--field)}
+.studies .q span{font-family:var(--display);font-size:18px;line-height:1.25}
+.studies .r{color:var(--ink)}
+.studies .r em{font-style:normal;font-family:var(--mono);color:var(--field2)}
+.studies .d{color:var(--muted)}
+@media (max-width:760px){.studies{grid-template-columns:1fr}.studies .hd{display:none}.studies .c{border-bottom:none;padding:4px 0}.studies .r{padding-bottom:12px;border-bottom:1px solid var(--faint)}}
 .caption{min-height:3.4em}
 .caption p{display:none;margin:0;font-family:var(--display);font-size:clamp(20px,2.6vw,30px);line-height:1.3;text-wrap:balance}
 .caption p.on{display:block}
@@ -226,6 +236,41 @@ svg .mut{fill:var(--muted)}
         <p data-c="1">An Action has four parts: what it pushes on, which way, how strongly, and how well it fits the moment.</p><span class="zh" data-c="1">一个 Action 有四部分：推什么（Target）、往哪边推（Direction）、推得多大劲（Magnitude）、合不合此刻的场（Adaptation）。</span>
         <p data-c="2">Flow reads the shape of the path: coupled, drifting, swinging, stuck, recovering, breaking, resonating, waking up again.</p><span class="zh" data-c="2">Flow 读的是这条路的形状：咬合、漂开、摇摆、停住、恢复、破裂、共振、重新激活。</span>
         <p data-c="3">The same State can be the end of a decline or the middle of a recovery. Flow tells them apart.</p><span class="zh" data-c="3">同一个状态，可能是下坡的终点，也可能是恢复的中途。Flow 把它们分开。</span>
+      </div>
+    </section>
+
+    <!-- 4a · four studies -->
+    <section class="scene" data-name="Four studies" data-steps="4">
+      <div class="kicker">The evidence</div>
+      <h2>Four studies, one question each</h2>
+      <div class="studies">
+        <div class="hd">Study</div><div class="hd">What we did</div><div class="hd">What we found</div>
+        <div class="row" data-s="1">
+          <div class="c q"><b>STUDY 0 · MEASURE</b><span>Can the field be measured?</span></div>
+          <div class="c d">Built State, Action, Flow and Readout on three development conversations, froze them, then had independent Observers re-read 94 held-out cutoffs blind.</div>
+          <div class="c r">Every ordinal State dimension agreed within one point (<em>1.000</em>), Spearman <em>.90 to .96</em>; interactional position κ = <em>.96</em>.</div>
+        </div>
+        <div class="row" data-s="2">
+          <div class="c q"><b>STUDY 1 · PREDICT</b><span>What does the field tell us about what comes next?</span></div>
+          <div class="c d">Raced ten views of the same history, from the current turn to the full history, against State, State + Action and State + Action + Flow. Two independent sets: 28 conversations, 1,044 cutoffs.</div>
+          <div class="c r">State carries predictive signal for upcoming correction: AUROC <em>.702</em> and <em>.700</em>, against <em>.457</em> and <em>.497</em> for the full history. Field readings also anticipate drops in Ground and Carry.</div>
+        </div>
+        <div class="row" data-s="3">
+          <div class="c q"><b>STUDY 2 · ACT</b><span>Does the timing of an Action matter?</span></div>
+          <div class="c d">Kept every State and outcome fixed and moved the same Actions to other moments in the same conversation. 730 + 162 transitions, 20,000 permutations.</div>
+          <div class="c r">Actions in their true moments predict the next State better: error <em>.625</em> against <em>.662</em> when shuffled (p &lt; .00005), in both sets.</div>
+        </div>
+        <div class="row" data-s="4">
+          <div class="c q"><b>STUDY 3 · PERSIST</b><span>Can memory and field come apart?</span></div>
+          <div class="c d">Public CareCall-Memory corpus: sessions that receive byte-identical memory, and a session that begins with an empty memory channel.</div>
+          <div class="c r">The same memory came with three very different fields (Ground <em>6 → 3 → 4</em>). With memory empty, the new session's field still sat closest to where the last one ended.</div>
+        </div>
+      </div>
+      <div class="caption">
+        <span class="zh" data-c="1">Study 0 · 测量：场能不能被测出来？独立观察者盲读 94 个时刻，每个序数维度都在一分以内一致。</span>
+        <span class="zh" data-c="2">Study 1 · 预测：场告诉我们下一步什么？两批独立对话，State 带着下一位说话者会不会纠正的预测信号，AUROC .702 / .700，完整历史只有 .457 / .497。</span>
+        <span class="zh" data-c="3">Study 2 · 行动：Action 的时机重要吗？把同样的 Action 挪到别的时刻，预测下一个 State 就变差。</span>
+        <span class="zh" data-c="4">Study 3 · 持续：记忆和场能分开吗？同一份记忆，三段场完全不同；记忆通道空了，新一段的场仍然最接近上一段的结尾。</span>
       </div>
     </section>
 
