@@ -275,12 +275,13 @@ svg .grid{stroke:var(--wash);stroke-width:1;fill:none}
           <circle cx="400" cy="144" r="5" fill="var(--snap)"/><circle cx="400" cy="205.7" r="5" fill="var(--mirror)"/>
         </g>
         <g data-s="3">
-          <text x="625" y="100" text-anchor="middle" font-size="14" class="mut">after step 3</text>
+          <text x="472" y="98" font-size="14" class="mut">after step 3</text>
+          <text x="700" y="108" text-anchor="middle" font-size="15" fill="var(--snap)">+3 new loops</text>
           <polyline points="400,144 520,128.6 640,120.9 760,120.9" fill="none" stroke="var(--snap)" stroke-width="3"/>
           <polyline points="400,205.7 520,205.7 640,205.7 760,205.7" fill="none" stroke="var(--mirror)" stroke-width="3"/>
           <text x="772" y="126" class="m" font-size="18" fill="var(--snap)">31</text>
           <text x="772" y="211" class="m" font-size="18" fill="var(--mirror)">20</text>
-          <text x="610" y="236" text-anchor="middle" font-size="15" fill="var(--mirror)">no new loops</text>
+          <text x="640" y="236" text-anchor="middle" font-size="15" fill="var(--mirror)">+0 new loops</text>
         </g>
         <g data-s="4">
           <rect x="160" y="72" width="260" height="56" rx="5" fill="var(--panel)" stroke="var(--faint)"/>
@@ -297,7 +298,7 @@ svg .grid{stroke:var(--wash);stroke-width:1;fill:none}
       <div class="caption">
         <p data-c="1">Same task, same format. The Mirror adds one thing: the path, the last three steps and how they changed.</p><span class="zh" data-c="1">同样的任务、同样的格式，镜子只多给一样东西：走过的路，也就是最近三步和它们怎么变化。</span>
         <p data-c="2">In the first steps, both groups fall into loops.</p><span class="zh" data-c="2">开头几步，两组都会掉进循环。</span>
-        <p data-c="3">After step 3, no Mirror agent entered a new loop. 20 against 31.</p><span class="zh" data-c="3">第三步以后，镜子组再没有一个掉进新的循环。20 对 31。</span>
+        <p data-c="3">After step 3, Snapshot agents still fell into 3 new loops. No Mirror agent did.</p><span class="zh" data-c="3">第三步以后，快照组还在新掉坑，又掉了 3 次；镜子组一次也没有。</span>
         <p data-c="4">The Mirror gives no instruction. The change of course is the agent’s own.</p><span class="zh" data-c="4">镜子不下任何指令，改道是智能体自己做的。</span>
         <p data-c="5">Where an exit existed, Mirror agents looped 2 times against 13, and they finished more tasks in fewer steps.</p><span class="zh" data-c="5">在有出口的关卡里，镜子组掉坑 2 局，快照组 13 局；镜子组做成的也更多，用的步数更少。</span>
       </div>
