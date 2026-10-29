@@ -1,0 +1,386 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Interaction Field Dynamics</title>
+<meta name="robots" content="noindex">
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* A deliberately single, dark "field" look: luminous halos on deep water. Definitions and framework from the CHI 2027 submission. */
+:root{
+  --bg:#0a1315; --panel:#0f1b1e; --ink:#e9f1ef; --muted:#8fa3a3; --faint:#24363a;
+  --field:#4fd1c5; --field2:#8ee6dc; --warm:#f08a5d; --gold:#f2c46d; --info:#6c7d80; --rose:#d58fc6;
+  --display:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{min-height:100%;display:flex;flex-direction:column;gap:14px;max-width:1120px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 18px}
+nav.scenes{display:flex;flex-wrap:wrap;gap:6px 18px}
+nav.scenes button{all:unset;cursor:pointer;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:4px 0;border-bottom:2px solid transparent}
+nav.scenes button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--field)}
+nav.scenes button:focus-visible{outline:2px solid var(--field);outline-offset:3px}
+.stage{position:relative;overflow:hidden;border:1px solid var(--faint);border-radius:10px;padding:20px clamp(14px,3vw,36px) 14px;cursor:pointer;flex:1;display:flex;flex-direction:column;gap:10px;
+  background:radial-gradient(ellipse 70% 60% at 50% 40%, #12282b 0%, var(--panel) 60%, var(--bg) 100%)}
+.kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--field)}
+.scene h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,40px);line-height:1.12;margin:2px 0 0;text-wrap:balance}
+.scene{display:none;flex-direction:column;gap:6px}
+.scene.active{display:flex}
+svg{width:100%;height:auto;max-height:58vh;display:block;fill:var(--ink);overflow:visible}
+svg text{font-family:var(--body);paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round;stroke-opacity:.85}
+svg .disp{font-family:var(--display)}
+svg .m{font-family:var(--mono)}
+svg .mut{fill:var(--muted)}
+[data-s]{opacity:0;transition:opacity .7s ease}
+[data-s].on{opacity:1}
+.breathe{animation:breathe 7s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.breathe.b2{animation-duration:9s;animation-delay:-2s}
+.breathe.b3{animation-duration:8s;animation-delay:-4s}
+.drift{animation:drift 14s linear infinite;transform-box:fill-box;transform-origin:center}
+.ripple{animation:ripple 4.5s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+@keyframes drift{to{transform:rotate(360deg)}}
+@keyframes ripple{0%{transform:scale(.25);opacity:.9}100%{transform:scale(1);opacity:0}}
+.caption{min-height:3.4em}
+.caption p{display:none;margin:0;font-family:var(--display);font-size:clamp(20px,2.6vw,30px);line-height:1.3;text-wrap:balance}
+.caption p.on{display:block}
+.caption .zh{display:none;font-size:15px;color:var(--muted);margin-top:4px}
+.zh-on .caption .zh.on{display:block}
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar button{font:inherit;font-size:14px;padding:7px 14px;border-radius:6px;border:1px solid var(--faint);background:transparent;color:var(--ink);cursor:pointer}
+.bar button:disabled{opacity:.35;cursor:default}
+.bar button:focus-visible{outline:2px solid var(--field);outline-offset:2px}
+.bar .next{background:var(--field);border-color:var(--field);color:#062022;font-weight:600}
+.dots{display:flex;gap:6px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--faint)}
+.dots i.on{background:var(--field)}
+.hint{margin-left:auto;font-size:12px;color:var(--muted)}
+.triad{display:grid;gap:6px;margin:0}
+.triad p{margin:0;font-family:var(--display);font-size:clamp(22px,3vw,34px);line-height:1.25;text-wrap:balance}
+.triad p:last-child{color:var(--field2)}
+@media (max-width:560px){.hint{display:none}}
+@media (prefers-reduced-motion:reduce){.breathe,.drift,.ripple{animation:none}[data-s]{transition:none}}
+</style>
+
+<div class="wrap" id="app">
+  <nav class="scenes" id="nav" aria-label="Scenes"></nav>
+  <div class="stage" id="stage" tabindex="0" aria-live="polite">
+
+    <!-- 0 · same words -->
+    <section class="scene" data-name="Same words" data-steps="3">
+      <div class="kicker">Why a field?</div>
+      <h2>The words stay the same. Their force changes with the field.</h2>
+      <svg viewBox="0 0 960 430" role="img" aria-label="The words Go ahead inside three different fields: trust, resignation, challenge">
+        <g data-s="1"><text x="480" y="56" text-anchor="middle" class="disp" font-size="40" font-style="italic">“Go ahead.”</text></g>
+        <g data-s="2">
+          <g class="halo" data-x="170" data-y="230" data-r="118" data-c="field" data-mood="calm"></g>
+          <g class="halo" data-x="480" data-y="236" data-r="96" data-c="info" data-mood="faded"></g>
+          <g class="halo" data-x="790" data-y="230" data-r="118" data-c="warm" data-mood="tense"></g>
+          <text x="170" y="226" text-anchor="middle" class="disp" font-size="30">trust</text>
+          <text x="170" y="256" text-anchor="middle" font-size="14" class="mut">“Take this part.”</text>
+          <text x="480" y="232" text-anchor="middle" class="disp" font-size="30">resignation</text>
+          <text x="480" y="262" text-anchor="middle" font-size="14" class="mut">“Do it your way.”</text>
+          <text x="790" y="226" text-anchor="middle" class="disp" font-size="30">challenge</text>
+          <text x="790" y="256" text-anchor="middle" font-size="14" class="mut">“Show me.”</text>
+          <text x="170" y="392" text-anchor="middle" font-size="13" class="mut">after fluent collaboration</text>
+          <text x="480" y="392" text-anchor="middle" font-size="13" class="mut">after repairs went nowhere</text>
+          <text x="790" y="392" text-anchor="middle" font-size="13" class="mut">after trust wore thin</text>
+        </g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">Two words: “Go ahead.”</p><span class="zh" data-c="1">两个字："你来吧。"</span>
+        <p data-c="2">Same words, three meanings. What changed is the field they land in.</p><span class="zh" data-c="2">同样的字，三种意思。变的是它们落进去的那个场。</span>
+        <p data-c="3">That field is built by everything that came before.</p><span class="zh" data-c="3">这个场，是之前发生的一切攒出来的。</span>
+      </div>
+    </section>
+
+    <!-- 1 · definition -->
+    <section class="scene" data-name="Definition" data-steps="3">
+      <div class="kicker">Definition</div>
+      <h2>What is an Interaction Field?</h2>
+      <svg viewBox="0 0 960 400" role="img" aria-label="Two parties, human and AI, and the field formed between them">
+        <g data-s="1">
+          <g id="ripH"></g><g id="ripA"></g>
+          <circle cx="250" cy="200" r="9" fill="var(--gold)"/>
+          <circle cx="710" cy="200" r="9" fill="var(--field2)"/>
+          <text x="250" y="338" text-anchor="middle" font-size="16" fill="var(--gold)">Human</text>
+          <text x="710" y="338" text-anchor="middle" font-size="16" fill="var(--field2)">AI</text>
+        </g>
+        <g data-s="2">
+          <g class="halo" data-x="480" data-y="200" data-r="120" data-c="field" data-mood="calm"></g>
+          <text x="480" y="208" text-anchor="middle" class="disp" font-size="30">the field</text>
+          <text x="480" y="236" text-anchor="middle" font-size="13" class="mut">formed by both, owned by neither</text>
+        </g>
+      </svg>
+      <p data-s="3" style="margin:0;font-family:var(--display);font-size:clamp(20px,2.6vw,28px);line-height:1.3;text-wrap:balance">An Interaction Field is <span style="color:var(--field2)">the evolving dynamic structure jointly formed through interaction, shaping the conditions for what can happen next.</span></p>
+      <div class="caption">
+        <p data-c="1">Two parties, a person and an AI or two AIs, each turn sending something into the space between them.</p><span class="zh" data-c="1">两方，人和 AI，或者两个 AI，每一轮都往彼此之间送出点什么。</span>
+        <p data-c="2">Between them a structure forms. Both make it, and it holds both of them.</p><span class="zh" data-c="2">两人之间长出一个结构。两个人一起造出它，它也同时托着两个人。</span>
+        <span class="zh" data-c="3">互动场是交互双方共同形成、持续演化的动力结构，它塑造着接下来互动发生的条件。</span>
+      </div>
+    </section>
+
+    <!-- 2 · overall schematic -->
+    <section class="scene" data-name="The framework" data-steps="5">
+      <div class="kicker">The framework</div>
+      <h2>State, Action, Flow, Readout</h2>
+      <svg viewBox="0 0 960 440" role="img" aria-label="State at t, Action moves it to State at t plus 1 and t plus 2; Flow traces the path; Readout records later facts on a separate channel">
+        <defs>
+          <marker id="tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/></marker>
+          <marker id="tipR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--rose)"/></marker>
+        </defs>
+        <g data-s="1">
+          <g class="halo" data-x="150" data-y="140" data-r="76" data-c="field" data-mood="calm"></g>
+          <text x="150" y="138" text-anchor="middle" class="disp" font-size="26">State</text>
+          <text x="150" y="160" text-anchor="middle" class="m" font-size="13">t</text>
+          <text x="150" y="30" text-anchor="middle" font-size="14" fill="var(--field2)">Where is it now?</text>
+        </g>
+        <g data-s="2">
+          <path d="M238 140 L 378 140" stroke="var(--gold)" stroke-width="2.4" marker-end="url(#tip)"/>
+          <circle cx="308" cy="140" r="6" fill="var(--gold)"/><circle cx="308" cy="140" r="15" fill="none" stroke="var(--gold)" stroke-opacity=".4"/>
+          <text x="308" y="112" text-anchor="middle" class="disp" font-size="22" fill="var(--gold)">Action <tspan class="m" font-size="14">t</tspan></text>
+          <g class="halo" data-x="470" data-y="140" data-r="76" data-c="field" data-mood="calm2"></g>
+          <text x="470" y="138" text-anchor="middle" class="disp" font-size="26">State</text>
+          <text x="470" y="160" text-anchor="middle" class="m" font-size="13">t+1</text>
+          <path d="M558 140 L 698 140" stroke="var(--gold)" stroke-width="2.4" marker-end="url(#tip)"/>
+          <circle cx="628" cy="140" r="6" fill="var(--gold)"/><circle cx="628" cy="140" r="15" fill="none" stroke="var(--gold)" stroke-opacity=".4"/>
+          <text x="628" y="112" text-anchor="middle" class="disp" font-size="22" fill="var(--gold)">Action <tspan class="m" font-size="14">t+1</tspan></text>
+          <g class="halo" data-x="790" data-y="140" data-r="76" data-c="field" data-mood="calm"></g>
+          <text x="790" y="138" text-anchor="middle" class="disp" font-size="26">State</text>
+          <text x="790" y="160" text-anchor="middle" class="m" font-size="13">t+2</text>
+          <text x="925" y="146" font-size="22" class="mut">…</text>
+          <text x="468" y="30" text-anchor="middle" font-size="14" fill="var(--gold)">What does this turn do here?</text>
+        </g>
+        <g data-s="3">
+          <path d="M60 268 C 160 240, 230 244, 320 262 S 470 286, 560 258 S 720 236, 820 260 L 905 250" fill="none" stroke="var(--field)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M60 268 C 160 240, 230 244, 320 262 S 470 286, 560 258 S 720 236, 820 260 L 905 250" fill="none" stroke="var(--field)" stroke-width="14" stroke-opacity=".12" stroke-linecap="round"/>
+          <text x="60" y="230" class="disp" font-size="24" fill="var(--field2)">Flow</text>
+          <text x="124" y="230" font-size="14" class="mut">Where is it going?</text>
+        </g>
+        <g data-s="4">
+          <line x1="40" y1="312" x2="920" y2="312" stroke="var(--faint)" stroke-dasharray="5 6"/>
+          <text x="40" y="336" font-size="12" class="mut">separate evidence channel · the field never grades itself</text>
+          <line x1="60" y1="386" x2="690" y2="386" stroke="var(--rose)" stroke-width="2" marker-end="url(#tipR)"/>
+          <g id="readDots"></g>
+          <text x="720" y="380" class="disp" font-size="24" fill="var(--rose)">Readout</text>
+          <text x="720" y="404" font-size="14" class="mut">What happened next?</text>
+        </g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">State: where the interaction is right now.</p><span class="zh" data-c="1">State：这段互动此刻在哪儿。</span>
+        <p data-c="2">Action: what a turn does to that State, moving it to the next one.</p><span class="zh" data-c="2">Action：这一轮对它起了什么作用，把它推到下一个状态。</span>
+        <p data-c="3">Flow: the path those State–Action–State steps trace together.</p><span class="zh" data-c="3">Flow：一步步"状态→作用→状态"连起来走出的路。</span>
+        <p data-c="4">Readout: what really happened next, recorded on a separate channel.</p><span class="zh" data-c="4">Readout：后来真正发生了什么，用一条单独的证据通道记下。</span>
+        <p data-c="5">IFD makes dynamic interaction measurable by decomposing it into observable, assessable, and traceable variables.</p><span class="zh" data-c="5">IFD 把持续的互动分解成可观测、可评定、可追踪的变量，让动态互动变得可以测量。</span>
+      </div>
+    </section>
+
+    <!-- 3 · inside State -->
+    <section class="scene" data-name="Inside State" data-steps="3">
+      <div class="kicker">State</div>
+      <h2>What a State holds</h2>
+      <svg viewBox="0 0 960 430" role="img" aria-label="The eight concepts of State arranged around a field">
+        <g data-s="1">
+          <g class="halo" data-x="480" data-y="215" data-r="104" data-c="field" data-mood="calm"></g>
+          <text x="480" y="212" text-anchor="middle" class="disp" font-size="30">State</text>
+          <text x="480" y="236" text-anchor="middle" font-size="13" class="mut">what history left active now</text>
+          <g id="sharedVars"></g>
+        </g>
+        <g data-s="2"><g id="dirVars"></g></g>
+        <g data-s="3"><g id="phiVar"></g>
+          <text x="480" y="420" text-anchor="middle" class="m" font-size="14" fill="var(--field2)">4 shared  +  3 × 2 sides  +  6 positions  =  16 numbers</text>
+        </g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">Four things both sides share: ground, jointness, and what is left over, good and bad.</p><span class="zh" data-c="1">两边共享的四样：共同地基、共同推进，还有留下来的东西，好的和伤的。</span>
+        <p data-c="2">Three things each side holds on its own: how well it reads the other, how open it is, how alive the line feels.</p><span class="zh" data-c="2">每一方各自有的三样：读懂对方多少、对对方多敞开、这条线在自己这边还接不接得下去。</span>
+        <p data-c="3">And who is leading, following, or stuck. Together: sixteen numbers.</p><span class="zh" data-c="3">再加上谁在带、谁在跟、还是卡住了。合起来，16 个数。</span>
+      </div>
+    </section>
+
+    <!-- 4 · how it moves -->
+    <section class="scene" data-name="How it moves" data-steps="3">
+      <div class="kicker">Action and Flow</div>
+      <h2>How the field moves</h2>
+      <svg viewBox="0 0 960 430" role="img" aria-label="Action channels on the left; eight shapes of Flow on the right">
+        <g data-s="1">
+          <g id="actRip"></g>
+          <circle cx="120" cy="92" r="8" fill="var(--gold)"/>
+          <text x="150" y="86" class="disp" font-size="26" fill="var(--gold)">Action</text>
+          <text x="150" y="108" font-size="13" class="mut">what this turn does to the field</text>
+          <g id="actChips"></g>
+        </g>
+        <g data-s="2">
+          <line x1="410" y1="40" x2="410" y2="410" stroke="var(--faint)"/>
+          <text x="450" y="56" class="disp" font-size="26" fill="var(--field2)">Flow</text>
+          <text x="520" y="56" font-size="13" class="mut">the shape of the path</text>
+          <g id="forms"></g>
+          <text x="450" y="404" font-size="14">heading <tspan class="m" fill="var(--field2)">advancing · level · deteriorating</tspan></text>
+        </g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">An Action has four parts: what it pushes on, which way, how strongly, and how well it fits the moment.</p><span class="zh" data-c="1">一个 Action 有四部分：推什么（Target）、往哪边推（Direction）、推得多大劲（Magnitude）、合不合此刻的场（Adaptation）。</span>
+        <p data-c="2">Flow reads the shape of the path: coupled, drifting, swinging, stuck, recovering, breaking, resonating, waking up again.</p><span class="zh" data-c="2">Flow 读的是这条路的形状：咬合、漂开、摇摆、停住、恢复、破裂、共振、重新激活。</span>
+        <p data-c="3">The same State can be the end of a decline or the middle of a recovery. Flow tells them apart.</p><span class="zh" data-c="3">同一个状态，可能是下坡的终点，也可能是恢复的中途。Flow 把它们分开。</span>
+      </div>
+    </section>
+
+    <!-- 5 · close -->
+    <section class="scene" data-name="In three lines" data-steps="2">
+      <div class="kicker">Interaction Field Dynamics</div>
+      <svg viewBox="0 0 960 220" role="img" aria-label="A field">
+        <g data-s="1"><g class="halo" data-x="480" data-y="110" data-r="104" data-c="field" data-mood="calm"></g>
+        <g class="halo" data-x="480" data-y="110" data-r="58" data-c="gold" data-mood="calm2"></g></g>
+      </svg>
+      <div class="triad" data-s="1">
+        <p>Interaction happens in a field.</p>
+        <p>The field carries the dynamics of interaction.</p>
+        <p>Every interaction reshapes the field and what can happen next.</p>
+      </div>
+      <p data-s="2" style="margin:8px 0 0;font-family:var(--display);font-size:clamp(20px,2.6vw,28px);color:var(--gold)">IFD makes the present that history has created measurable.</p>
+      <div class="caption">
+        <span class="zh" data-c="1">交互发生在场中。场承载着交互的动力。每一次交互都会重塑场，也重塑接下来可能发生什么。</span>
+        <span class="zh" data-c="2">IFD 让历史塑造出来的"此刻"变得可以测量。</span>
+      </div>
+    </section>
+
+    <div class="bar">
+      <button id="prev" type="button">← Back</button>
+      <button id="next" class="next" type="button">Next →</button>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <button id="zh" type="button" aria-pressed="false">中文</button>
+      <span class="hint">Click, Space or → to continue</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;parent&&parent.appendChild(e);return e;}
+  const COL={field:"var(--field)",gold:"var(--gold)",warm:"var(--warm)",info:"var(--info)"};
+  const HEX={field:"#4fd1c5",gold:"#f2c46d",warm:"#f08a5d",info:"#6c7d80"};
+  document.querySelectorAll("svg").forEach((svg,si)=>{
+    let defs=svg.querySelector("defs");if(!defs)defs=el("defs",{},null);svg.insertBefore(defs,svg.firstChild);
+    for(const k in HEX){const g=el("radialGradient",{id:`glow-${k}-${si}`},defs);
+      el("stop",{offset:"0%","stop-color":HEX[k],"stop-opacity":.42},g);
+      el("stop",{offset:"55%","stop-color":HEX[k],"stop-opacity":.12},g);
+      el("stop",{offset:"100%","stop-color":HEX[k],"stop-opacity":0},g);}
+    svg.dataset.si=si;
+  });
+  function ring(cx,cy,r,amp,k,ph){
+    let d="";const N=72;
+    for(let i=0;i<=N;i++){const a=i/N*Math.PI*2;const rr=r*(1+amp*Math.sin(k*a+ph)+amp*.5*Math.sin((k+2)*a-ph*1.7));
+      d+=(i?"L":"M")+(cx+rr*Math.cos(a)).toFixed(1)+" "+(cy+rr*.86*Math.sin(a)).toFixed(1);}
+    return d+"Z";
+  }
+  const MOOD={calm:{amp:.025,n:6,cls:"breathe",dash:null},calm2:{amp:.035,n:5,cls:"breathe b2",dash:null},
+    faded:{amp:.02,n:4,cls:"breathe b3",dash:"2 6"},tense:{amp:.085,n:6,cls:"",dash:"14 6 3 6"}};
+  document.querySelectorAll("g.halo").forEach((g,gi)=>{
+    const x=+g.dataset.x,y=+g.dataset.y,r=+g.dataset.r,c=g.dataset.c,m=MOOD[g.dataset.mood];
+    const si=g.closest("svg").dataset.si;
+    const wrap=el("g",{class:m.cls},g);
+    el("ellipse",{cx:x,cy:y,rx:r*1.35,ry:r*1.35*.86,fill:`url(#glow-${c}-${si})`},wrap);
+    const rot=el("g",{class:"drift",style:`animation-duration:${18+gi%5*4}s`},wrap);
+    for(let i=1;i<=m.n;i++){
+      const p=el("path",{d:ring(x,y,r*i/m.n,m.amp*(1+i*.15),3+(i%3),gi*1.3+i*.9),fill:"none",stroke:COL[c],
+        "stroke-width":i===m.n?1.6:1.1,"stroke-opacity":.85-(i/m.n)*.45},rot);
+      if(m.dash)p.setAttribute("stroke-dasharray",m.dash);
+    }
+  });
+  // ripples from a point
+  function ripples(gid,cx,cy,r,color){const g=document.getElementById(gid);
+    for(let i=0;i<3;i++){el("circle",{cx,cy,r,fill:"none",stroke:color,"stroke-width":1.4,class:"ripple",style:`animation-delay:${-i*1.5}s`},g);}}
+  ripples("ripH",250,200,190,"var(--gold)"); ripples("ripA",710,200,190,"var(--field2)"); ripples("actRip",120,92,40,"var(--gold)");
+
+  // Readout facts
+  const rd=document.getElementById("readDots");
+  [["repair done?",170],["task moves on?",370],["thread re-enters?",570]].forEach(([t,x])=>{
+    el("circle",{cx:x,cy:386,r:5,fill:"var(--rose)"},rd);el("text",{x,y:368,"text-anchor":"middle","font-size":13,class:"mut"},rd,t);});
+
+  // State variables
+  function vars(gid,list,color){const g=document.getElementById(gid);
+    list.forEach(([sym,name,desc,x,y,anc])=>{
+      el("text",{x,y,"text-anchor":anc,"font-size":15},g).innerHTML=`<tspan class="m" fill="${color}" font-weight="500">${sym}</tspan>  ${name}`;
+      el("text",{x,y:y+20,"text-anchor":anc,"font-size":13,class:"mut"},g,desc);});}
+  vars("sharedVars",[
+    ["G","Ground","same problem, same task",250,96,"end"],
+    ["J","Jointness","pushing toward the same goal",710,96,"start"],
+    ["P+","Positive residue","trust and rapport still active",215,212,"end"],
+    ["P−","Negative residue","unresolved corrections still active",745,212,"start"]],"var(--field2)");
+  vars("dirVars",[
+    ["M ⇄","Model","how well each reads the other",250,328,"end"],
+    ["O ⇄","Openness","how open each is to the other",480,368,"middle"],
+    ["Carry ⇄","Line viability","how alive the line is for each side",710,328,"start"]],"var(--gold)");
+  vars("phiVar",[["Φ","Position","Lead · Hold · Follow · Disrupted · Stalled · U",480,34,"middle"]],"var(--rose)");
+
+  // Action chips
+  const ac=document.getElementById("actChips");
+  [["Target","what it pushes on",["Grounding · Co-construction ·","Task-Execution · Relationship-Openness"]],
+   ["Direction","forward, hold, or pull away",["+  /  0  /  −"]],
+   ["Magnitude","how strong",["1–7"]],
+   ["Adaptation","how well it fits the moment",["1–7  /  U"]]].forEach(([t,sub,vals],i)=>{
+    const y=[136,232,300,368][i], h=i===0?84:56;
+    el("rect",{x:44,y,width:340,height:h,rx:10,fill:"#0b1719",stroke:"var(--gold)","stroke-opacity":.45},ac);
+    el("text",{x:60,y:y+24,"font-size":16,"font-weight":600,fill:"var(--gold)"},ac,t);
+    el("text",{x:60+t.length*9.6+12,y:y+24,"font-size":12,class:"mut"},ac,sub);
+    vals.forEach((v,k)=>el("text",{x:60,y:y+45+k*20,"font-size":13,class:"m"},ac,v));});
+
+  // Flow forms: mini glyphs
+  const forms=[
+    ["tight-coupled",t=>[.55-.25*t,.6-.25*t]],
+    ["drifting",t=>[.5-.1*t,.5+.3*t]],
+    ["oscillating",t=>[.5-.28*Math.sin(t*Math.PI*3),null]],
+    ["stalled",t=>[.5,null]],
+    ["recovering",t=>[.8-2.5*Math.pow(t-.45,2),null]],
+    ["rupturing",t=>[t<.55?.35:.8,null]],
+    ["resonant emergence",t=>t<.5?[.2+.5*t,.8-.7*t]:[.45-.7*(t-.5),.48-.7*(t-.5)]],
+    ["reactivating",t=>[t<.5?.75:.75-.9*(t-.5),null]]];
+  const fg=document.getElementById("forms");
+  forms.forEach(([name,f],i)=>{const col=i%4,row=Math.floor(i/4);const x0=450+col*118,y0=88+row*140,w=100,h=64;
+    el("rect",{x:x0,y:y0,width:w,height:h,rx:8,fill:"#0b1719",stroke:"var(--faint)"},fg);
+    let d1="",d2="";for(let k=0;k<=30;k++){const t=k/30;const [a,b]=f(t);const x=x0+8+t*(w-16);
+      if(name==="rupturing"&&k===17){d1+=`M${x.toFixed(1)} ${(y0+8+a*(h-16)).toFixed(1)}`;continue;}
+      d1+=(k?"L":"M")+x.toFixed(1)+" "+(y0+8+a*(h-16)).toFixed(1);
+      if(b!=null)d2+=(k?"L":"M")+x.toFixed(1)+" "+(y0+8+b*(h-16)).toFixed(1);}
+    el("path",{d:d1,fill:"none",stroke:"var(--field2)","stroke-width":2.2,"stroke-linecap":"round"},fg);
+    if(d2)el("path",{d:d2,fill:"none",stroke:"var(--gold)","stroke-width":2.2,"stroke-linecap":"round"},fg);
+    el("text",{x:x0+w/2,y:y0+h+22,"text-anchor":"middle","font-size":13},fg,name);
+  });
+
+  // deck logic
+  const scenes=[...document.querySelectorAll(".scene")];
+  const nav=document.getElementById("nav"), dots=document.getElementById("dots");
+  let si=0, st=1;
+  scenes.forEach((s,i)=>{const b=document.createElement("button");b.type="button";b.textContent=s.dataset.name;b.addEventListener("click",e=>{e.stopPropagation();go(i,1);});nav.appendChild(b);});
+  function render(){
+    scenes.forEach((s,i)=>s.classList.toggle("active",i===si));
+    const s=scenes[si], max=+s.dataset.steps;
+    s.querySelectorAll("[data-s]").forEach(n=>{const a=+n.dataset.s, e=n.dataset.e?+n.dataset.e:99;n.classList.toggle("on",st>=a&&st<=e);});
+    s.querySelectorAll("[data-c]").forEach(n=>n.classList.toggle("on",+n.dataset.c===st));
+    [...nav.children].forEach((b,i)=>b.setAttribute("aria-current",i===si?"true":"false"));
+    dots.innerHTML="";for(let i=1;i<=max;i++){const d=document.createElement("i");if(i<=st)d.className="on";dots.appendChild(d);}
+    document.getElementById("prev").disabled=(si===0&&st===1);
+    document.getElementById("next").disabled=(si===scenes.length-1&&st===max);
+  }
+  function go(i,s){si=Math.max(0,Math.min(scenes.length-1,i));st=s;render();}
+  function next(){const max=+scenes[si].dataset.steps;if(st<max){st++;render();}else if(si<scenes.length-1)go(si+1,1);}
+  function prev(){if(st>1){st--;render();}else if(si>0)go(si-1,+scenes[si-1].dataset.steps);}
+  document.getElementById("stage").addEventListener("click",e=>{if(e.target.closest("button"))return;next();});
+  document.getElementById("next").addEventListener("click",e=>{e.stopPropagation();next();});
+  document.getElementById("prev").addEventListener("click",e=>{e.stopPropagation();prev();});
+  const zhBtn=document.getElementById("zh");
+  zhBtn.addEventListener("click",e=>{e.stopPropagation();const on=document.getElementById("app").classList.toggle("zh-on");zhBtn.setAttribute("aria-pressed",on?"true":"false");});
+  document.addEventListener("keydown",e=>{
+    if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){e.preventDefault();next();}
+    else if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();prev();}
+  });
+  render();
+})();
+</script>
+
+</body></html>

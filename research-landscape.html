@@ -289,7 +289,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem
      q:['"Can I see my own situation?"','"我看得清自己现在的处境吗？"'],
      d:['When an agent cannot tell its situation from the information in front of it, the Mirror puts the path it has walked in front of it at the moment of decision. It describes and never instructs. With the full history already in context, LongMemEval accuracy rises from <span class="n">66.0%</span> to <span class="n">84.0%</span> and from <span class="n">72.2%</span> to <span class="n">83.5%</span> on two frontier models.','当 agent 从眼前的信息里看不出自己的处境时，镜子在它做决定的那一刻把它走过的路摆到眼前，只描述、不指挥。完整历史本来就在上下文里，两个前沿模型在 LongMemEval 上从 <span class="n">66.0%</span> 升到 <span class="n">84.0%</span>、从 <span class="n">72.2%</span> 升到 <span class="n">83.5%</span>。'],
      gate:['stale facts, repeated loops, drifting from the goal','过期的事实、原地打转、偏离目标'],
-     status:['Under review · 2026','在审 · 2026'], links:[['https://doi.org/10.5281/zenodo.20730588','Early note']]},
+     status:['Under review · 2026','在审 · 2026'], links:[['demo/awareness-mirror.html','Walkthrough'],['https://doi.org/10.5281/zenodo.20730588','Early note']]},
     {id:'val', layer:'below', f:['trust','hci'], box:[560,412,200,68,'box'], title:'AI values', sub:['safety that protects','守护人的安全观'],
      q:['"What am I protecting?"','"我守护的是什么？"'],
      d:['Safety that starts from the person: a safety mechanism exists to protect people, and its own triggers must hold up to scrutiny. Memory has value boundaries too, so every memory is marked as fact, opinion, sourced information or judgment.','以保护主体为出发点的安全观：安全机制是为了保护人，它自己的触发也要经得起检验。记忆同样有价值边界，每一条都标明是事实、观点、带来源的信息，还是判断。'],
@@ -309,7 +309,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem
      q:['"What have we become together?"','"我们一起成为了什么？"'],
      d:['The relational structure that forms between a person and an AI over months and years: how it thickens, drifts, ruptures and repairs. A 16-dimensional interaction State predicts the user\'s next correction at AUROC <span class="n">.702</span> and <span class="n">.700</span> in two independent samples, where full-history embeddings reach <span class="n">.457</span> and <span class="n">.497</span>.','人和 AI 在几个月、几年里长出来的关系结构：怎样变厚、漂移、断裂、修复。16 维的交互状态在两份独立样本里预测用户下一次纠正的 AUROC 是 <span class="n">.702</span> 和 <span class="n">.700</span>，完整历史的嵌入只有 <span class="n">.457</span> 和 <span class="n">.497</span>。'],
      gate:['misreading where the interaction stands','读错关系此刻的状态'],
-     status:['Under review · 2026','在审 · 2026'], links:[]},
+     status:['Under review · 2026','在审 · 2026'], links:[['demo/interaction-field.html','Walkthrough']]},
     {id:'cel', layer:'ground', f:['agents'], box:[230,712,500,46,'ground'], title:'Celestelin', sub:['SoulNest · CelestelinAgent · Workshop · EXO','SoulNest · CelestelinAgent · Workshop · EXO'],
      q:['"Where does all of this live?"','"这一切住在哪里？"'],
      d:['A persistent multi-agent research platform: a shared world, memory with provenance, and human approval gates on outward actions. In continuous operation since April 2025, it is where every mechanism above meets real use.','一个持续运行的多智能体研究平台：共同的世界、带出处的记忆、对外动作的人类审批闸。2025 年 4 月起持续运行，上面每一个机制都在这里接受真实使用的检验。'],
@@ -376,7 +376,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.05rem
         var c = document.createElement('article'); c.className = 'card'; c.id = 'card-' + it.id; c.dataset.id = it.id;
         c.style.setProperty('--c', it.layer==='base' || it.layer==='sea' ? 'var(--accent)' : FIELD[it.f[0]]);
         var tags = it.f.map(function(f){ return '<span class="tag '+f+'">'+L(FNAME[f])+'</span>'; }).join('');
-        var links = it.links.map(function(k){ return '<a href="'+k[0]+'" target="_blank" rel="noopener">'+(lang==='zh' ? ({'DOI':'DOI','Live demo':'在线演示','Early note':'早期技术笔记','celestelin.com':'celestelin.com'}[k[1]]) : k[1])+'</a>'; }).join('');
+        var links = it.links.map(function(k){ return '<a href="'+k[0]+'" target="_blank" rel="noopener">'+(lang==='zh' ? ({'DOI':'DOI','Walkthrough':'图解演示','Live demo':'在线演示','Early note':'早期技术笔记','celestelin.com':'celestelin.com'}[k[1]]) : k[1])+'</a>'; }).join('');
         c.innerHTML = '<div class="q">'+L(it.q)+'</div>' +
           '<div class="t">'+it.title+'</div>' +
           '<div class="tags">'+tags+'</div>' +

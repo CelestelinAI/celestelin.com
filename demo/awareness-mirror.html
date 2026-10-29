@@ -1,0 +1,444 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Awareness Mirror Studies</title>
+<meta name="robots" content="noindex">
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one stage per scene, click or arrow keys to reveal one sentence at a time; colors match the paper's figures (blue = Mirror, orange = Snapshot / Recent events). */
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --ink:#15191f; --muted:#5d6570; --faint:#c9ced6; --wash:#eceef2;
+  --mirror:#2a78d6; --snap:#eb6834; --good:#2a78d6;
+  --display:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11141a; --panel:#181c23; --ink:#e9ecf1; --muted:#9aa3ae; --faint:#3a414c; --wash:#20252e;
+  --mirror:#5b9df0; --snap:#ff8a5c; --good:#5b9df0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11141a; --panel:#181c23; --ink:#e9ecf1; --muted:#9aa3ae; --faint:#3a414c; --wash:#20252e;
+  --mirror:#5b9df0; --snap:#ff8a5c; --good:#5b9df0; color-scheme:dark}
+
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{min-height:100%;display:flex;flex-direction:column;gap:14px;max-width:1120px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 18px}
+
+nav.scenes{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+nav.scenes button{all:unset;cursor:pointer;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:4px 0;border-bottom:2px solid transparent}
+nav.scenes button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--mirror)}
+nav.scenes button:focus-visible{outline:2px solid var(--mirror);outline-offset:3px}
+
+.stage{position:relative;background:var(--panel);border:1px solid var(--faint);border-radius:6px;padding:18px clamp(12px,3vw,32px) 14px;cursor:pointer;flex:1;display:flex;flex-direction:column;gap:10px;min-height:0}
+.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.scene h2{font-family:var(--display);font-weight:500;font-size:clamp(24px,3.4vw,36px);line-height:1.15;margin:2px 0 0;text-wrap:balance}
+.scene{display:none;flex-direction:column;gap:8px}
+.scene.active{display:flex}
+svg{width:100%;height:auto;max-height:56vh;display:block;fill:var(--ink)}
+svg text{font-family:var(--body)}
+svg .m{font-family:var(--mono)}
+svg .mut{fill:var(--muted)}
+svg .ax{stroke:var(--faint);stroke-width:1.2;fill:none}
+svg .grid{stroke:var(--wash);stroke-width:1;fill:none}
+
+/* reveal machinery */
+[data-s]{opacity:0;transition:opacity .55s ease}
+[data-s].on{opacity:1}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.3s ease}
+.draw.on{stroke-dashoffset:0}
+
+.caption{min-height:3.2em}
+.caption p{display:none;margin:0;font-family:var(--display);font-size:clamp(20px,2.6vw,30px);line-height:1.3;text-wrap:balance}
+.caption p.on{display:block}
+.caption .zh{display:none;font-family:var(--body);font-size:15px;color:var(--muted);margin-top:4px}
+.zh-on .caption p.on + .zh, .zh-on .caption .zh.on{display:block}
+
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar button{font:inherit;font-size:14px;padding:7px 14px;border-radius:4px;border:1px solid var(--faint);background:var(--panel);color:var(--ink);cursor:pointer}
+.bar button:focus-visible{outline:2px solid var(--mirror);outline-offset:2px}
+.bar .next{background:var(--mirror);border-color:var(--mirror);color:#fff}
+.dots{display:flex;gap:6px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--faint)}
+.dots i.on{background:var(--mirror)}
+.hint{margin-left:auto;font-size:12px;color:var(--muted)}
+
+/* closing scene */
+.close-grid{display:grid;grid-template-columns:minmax(0,11em) minmax(0,1fr);gap:0;border-top:1px solid var(--faint)}
+.close-grid > div{padding:10px 8px;border-bottom:1px solid var(--faint);min-width:0}
+.close-grid .k{font-weight:600}
+.close-grid b{font-family:var(--mono);font-weight:500;color:var(--mirror)}
+.big{font-family:var(--display);font-size:clamp(22px,3vw,34px);line-height:1.25;margin:4px 0;text-wrap:balance}
+.big.end{color:var(--mirror)}
+@media (max-width:560px){.close-grid{grid-template-columns:1fr}.close-grid .k{border-bottom:none;padding-bottom:0}.hint{display:none}}
+@media (prefers-reduced-motion:reduce){[data-s],.draw{transition:none}}
+</style>
+
+<div class="wrap" id="app">
+  <nav class="scenes" id="nav" aria-label="Scenes"></nav>
+
+  <div class="stage" id="stage" tabindex="0" aria-live="polite">
+
+    <!-- 0 -->
+    <section class="scene" data-name="The blind spot" data-steps="4">
+      <div class="kicker">Awareness Mirror</div>
+      <h2>Everyone can see the path, except the agent walking it</h2>
+      <svg viewBox="0 0 960 420" role="img" aria-label="An agent's path seen by logs, developers and users, while the agent sees only the present">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+        </defs>
+        <path class="draw" data-s="1" pathLength="1" d="M90 360 C 170 360, 170 250, 260 250 S 360 330, 440 300 S 520 150, 600 170 S 660 230, 700 200" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+        <g data-s="1">
+          <circle cx="90" cy="360" r="6" fill="var(--muted)"/><text x="72" y="392" class="mut" font-size="15">start</text>
+          <circle cx="700" cy="200" r="11" fill="var(--mirror)"/><text x="672" y="236" font-size="16" font-weight="600">agent, now</text>
+        </g>
+        <g data-s="2" font-size="15">
+          <text x="250" y="70" class="mut">logs</text><path d="M268 80 L300 220" stroke="var(--muted)" stroke-dasharray="4 5" fill="none" marker-end="url(#ar)"/>
+          <text x="420" y="58" class="mut">developers</text><path d="M455 68 L460 270" stroke="var(--muted)" stroke-dasharray="4 5" fill="none" marker-end="url(#ar)"/>
+          <text x="560" y="70" class="mut">users</text><path d="M580 80 L560 165" stroke="var(--muted)" stroke-dasharray="4 5" fill="none" marker-end="url(#ar)"/>
+        </g>
+        <path data-s="3" fill="var(--panel)" fill-rule="evenodd" opacity=".9" d="M0 0 H760 V420 H0 Z M700 162 a38 38 0 1 0 0.1 0 Z"/>
+        <g data-s="3"><text x="606" y="290" font-size="15" class="mut">all it has: this moment</text></g>
+        <g data-s="4">
+          <rect x="775" y="90" width="170" height="210" rx="6" fill="var(--wash)" stroke="var(--mirror)" stroke-width="2"/>
+          <text x="790" y="118" font-size="14" font-weight="600" fill="var(--mirror)">Mirror</text>
+          <path d="M795 270 C 815 270, 815 230, 838 230 S 860 258, 880 250 S 900 200, 915 205 S 925 215, 930 205" fill="none" stroke="var(--mirror)" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="930" cy="205" r="5" fill="var(--mirror)"/>
+          <text x="790" y="290" font-size="12" class="mut">read-only, before each decision</text>
+          <path d="M770 200 L716 200" stroke="var(--mirror)" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+        </g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">An agent leaves a long trail of actions behind it.</p><span class="zh" data-c="1">智能体身后留下一长串行动的轨迹。</span>
+        <p data-c="2">Logs, developers and users can all see that trail.</p><span class="zh" data-c="2">日志、开发者、用户都看得见这条轨迹。</span>
+        <p data-c="3">The agent itself only sees this moment. It walks a maze with its eyes covered.</p><span class="zh" data-c="3">智能体自己只看得见此刻，像蒙着眼睛走迷宫。</span>
+        <p data-c="4">The Awareness Mirror lets the agent see its own path, before every decision.</p><span class="zh" data-c="4">觉知镜子让智能体在每次决定之前看见自己走过的路。</span>
+      </div>
+    </section>
+
+    <!-- 1 -->
+    <section class="scene" data-name="Order and time" data-steps="5">
+      <div class="kicker">What the present hides · 1</div>
+      <h2>Order and time</h2>
+      <svg viewBox="0 0 960 420" role="img" aria-label="Two fevers at 38.5 degrees, aliasing results and LongMemEval results">
+        <!-- frame A: nurse example, steps 1-3 -->
+        <g data-s="1" data-e="3">
+          <line class="grid" x1="120" y1="120" x2="640" y2="120"/><line class="grid" x1="120" y1="200" x2="640" y2="200"/><line class="grid" x1="120" y1="280" x2="640" y2="280"/>
+          <line class="ax" x1="120" y1="360" x2="640" y2="360"/>
+          <text x="104" y="125" text-anchor="end" class="mut m" font-size="13">40</text>
+          <text x="104" y="205" text-anchor="end" class="mut m" font-size="13">39</text>
+          <text x="104" y="285" text-anchor="end" class="mut m" font-size="13">38</text>
+          <text x="104" y="365" text-anchor="end" class="mut m" font-size="13">37 °C</text>
+          <text x="120" y="388" text-anchor="middle" class="mut m" font-size="13">0</text><text x="280" y="388" text-anchor="middle" class="mut m" font-size="13">4</text><text x="440" y="388" text-anchor="middle" class="mut m" font-size="13">8</text><text x="600" y="388" text-anchor="middle" class="mut m" font-size="13">12 h</text>
+          <rect x="580" y="100" width="40" height="260" fill="var(--wash)"/>
+          <text x="600" y="92" text-anchor="middle" font-size="13" class="mut">now: 38.5 °C for both</text>
+        </g>
+        <g data-s="2" data-e="3">
+          <polyline points="120,360 280,320 440,280 600,240" fill="none" stroke="var(--snap)" stroke-width="3"/>
+          <polyline points="120,120 280,160 440,200 600,240" fill="none" stroke="var(--mirror)" stroke-width="3"/>
+          <circle cx="120" cy="360" r="5" fill="var(--snap)"/><circle cx="280" cy="320" r="5" fill="var(--snap)"/><circle cx="440" cy="280" r="5" fill="var(--snap)"/>
+          <circle cx="120" cy="120" r="5" fill="var(--mirror)"/><circle cx="280" cy="160" r="5" fill="var(--mirror)"/><circle cx="440" cy="200" r="5" fill="var(--mirror)"/>
+          <text x="140" y="348" font-size="15" fill="var(--snap)">Patient A: fever climbing</text>
+          <text x="140" y="112" font-size="15" fill="var(--mirror)">Patient B: fever breaking</text>
+        </g>
+        <g data-s="1" data-e="3"><circle cx="600" cy="240" r="9" fill="var(--ink)"/></g>
+        <g data-s="3" data-e="3" font-size="16">
+          <path d="M612 236 L720 190" stroke="var(--snap)" stroke-width="2.4" stroke-dasharray="6 5" fill="none"/>
+          <text x="728" y="192" fill="var(--snap)">A: treat now</text>
+          <path d="M612 246 L720 296" stroke="var(--mirror)" stroke-width="2.4" stroke-dasharray="6 5" fill="none"/>
+          <text x="728" y="302" fill="var(--mirror)">B: keep watching</text>
+        </g>
+        <!-- frame B: aliasing results, step 4 -->
+        <g data-s="4" data-e="4">
+          <text x="60" y="70" font-size="16" class="mut">81 pairs with an identical present and different pasts · Claude, GPT-4o-mini, Gemini</text>
+          <line class="ax" x1="300" y1="100" x2="300" y2="350"/>
+          <rect x="300" y="120" width="500.7" height="56" fill="var(--mirror)"/>
+          <rect x="300" y="210" width="32.1" height="56" fill="var(--snap)"/>
+          <rect x="300" y="300" width="2" height="56" fill="var(--muted)"/>
+          <text x="284" y="154" text-anchor="end" font-size="16">Ordered path (Mirror)</text>
+          <text x="284" y="244" text-anchor="end" font-size="16">Present only</text>
+          <text x="284" y="334" text-anchor="end" font-size="16">Same events, shuffled</text>
+          <text x="812" y="155" class="m" font-size="22" font-weight="500" fill="var(--mirror)">78 / 81</text>
+          <text x="344" y="245" class="m" font-size="22">5 / 81</text>
+          <text x="314" y="335" class="m" font-size="22">0 / 81</text>
+          <text x="60" y="400" font-size="14" class="mut">Replicated two months later with the same decoding settings for every model: 78 / 81, 2 / 81, 1 / 81.</text>
+        </g>
+        <!-- frame C: LongMemEval, step 5 -->
+        <g data-s="5" data-e="5">
+          <text x="80" y="54" font-size="16" class="mut">LongMemEval · 194 scored questions · full raw history in context</text>
+          <line class="grid" x1="120" y1="100" x2="880" y2="100"/><line class="grid" x1="120" y1="235" x2="880" y2="235"/>
+          <line class="ax" x1="120" y1="370" x2="880" y2="370"/>
+          <text x="108" y="105" text-anchor="end" class="mut m" font-size="13">100%</text><text x="108" y="240" text-anchor="end" class="mut m" font-size="13">50</text><text x="108" y="375" text-anchor="end" class="mut m" font-size="13">0</text>
+          <!-- scale: 100% = 270px; y0 = 370 -->
+          <rect x="200" y="191.8" width="110" height="178.2" fill="var(--faint)"/>
+          <rect x="320" y="143.2" width="110" height="226.8" fill="var(--mirror)"/>
+          <rect x="560" y="175.1" width="110" height="194.9" fill="var(--faint)"/>
+          <rect x="680" y="144.6" width="110" height="225.4" fill="var(--mirror)"/>
+          <text x="255" y="183" text-anchor="middle" class="m" font-size="17">66.0</text>
+          <text x="375" y="134" text-anchor="middle" class="m" font-size="19" font-weight="500" fill="var(--mirror)">84.0</text>
+          <text x="615" y="166" text-anchor="middle" class="m" font-size="17">72.2</text>
+          <text x="735" y="136" text-anchor="middle" class="m" font-size="19" font-weight="500" fill="var(--mirror)">83.5</text>
+          <text x="315" y="398" text-anchor="middle" font-size="15">Claude Sonnet 4.6</text>
+          <text x="675" y="398" text-anchor="middle" font-size="15">GPT-5.6 Terra</text>
+          <rect x="560" y="44" width="14" height="14" fill="var(--faint)"/><text x="580" y="56" font-size="14">full raw history</text>
+          <rect x="715" y="44" width="14" height="14" fill="var(--mirror)"/><text x="735" y="56" font-size="14">+ Mirror</text>
+        </g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">Two patients. Right now, both read 38.5 °C.</p><span class="zh" data-c="1">两个病人，此刻体温都是 38.5 度。</span>
+        <p data-c="2">One fever is climbing from 37. The other is breaking from 40.</p><span class="zh" data-c="2">一个从 37 度往上升，一个从 40 度往下退。</span>
+        <p data-c="3">Same present, different past. The right next step depends on the path.</p><span class="zh" data-c="3">现在一样，过去不同。下一步该怎么做，取决于走过的路。</span>
+        <p data-c="4">We built 81 such pairs. With the ordered path, agents told 78 apart. With the present only, 5. Shuffled, 0.</p><span class="zh" data-c="4">我们做了 81 对这样的情境。看得见有序的路，分对 78 对；只看现在，5 对；顺序打乱，0 对。</span>
+        <p data-c="5">On LongMemEval, the Mirror raised accuracy by 14.7 points on average, p &lt; .001.</p><span class="zh" data-c="5">在 LongMemEval 上，镜子让准确率平均提高 14.7 分，p 小于 0.001。</span>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="scene" data-name="Change" data-steps="6">
+      <div class="kicker">What the present hides · 2</div>
+      <h2>Change</h2>
+      <svg viewBox="0 0 960 420" role="img" aria-label="A knowledge update example and the silent environment change results">
+        <!-- frame A: knowledge update, steps 1-3 -->
+        <g data-s="1" data-e="3">
+          <text x="60" y="60" font-size="16" class="mut">How many Korean restaurants has the user tried?</text>
+          <rect x="60" y="90" width="300" height="70" rx="5" fill="var(--wash)"/>
+          <text x="80" y="120" font-size="14" class="mut">earlier session</text>
+          <text x="80" y="146" font-size="18">“I’ve tried three.”</text>
+          <rect x="60" y="180" width="300" height="70" rx="5" fill="var(--wash)"/>
+          <text x="80" y="210" font-size="14" class="mut">later session</text>
+          <text x="80" y="236" font-size="18">“I’ve tried four.”</text>
+        </g>
+        <g data-s="2" data-e="3">
+          <text x="440" y="110" font-size="14" class="mut">lines in relevance order</text>
+          <rect x="440" y="124" width="440" height="64" rx="5" fill="none" stroke="var(--snap)" stroke-width="2"/>
+          <text x="460" y="162" font-size="18" fill="var(--snap)">“Three in one session and four in another.”</text>
+        </g>
+        <g data-s="3" data-e="3">
+          <text x="440" y="236" font-size="14" class="mut">with the Mirror, in the order they were said</text>
+          <rect x="440" y="250" width="440" height="64" rx="5" fill="none" stroke="var(--mirror)" stroke-width="2"/>
+          <text x="460" y="288" font-size="18" fill="var(--mirror)">“Four.” The later count.</text>
+        </g>
+        <!-- frame B: silent change, steps 4-5 ; 18 tiles of 34px, gap 6 -->
+        <g data-s="4" data-e="6">
+          <text x="60" y="70" font-size="16" class="mut">18 runs · the environment changes without notice</text>
+          <text x="60" y="150" font-size="16">Snapshot</text>
+          <g id="snapTiles"></g>
+          <text x="240" y="212" font-size="14" fill="var(--snap)">looped in 18 of 18</text>
+        </g>
+        <g data-s="5" data-e="6">
+          <text x="60" y="290" font-size="16">Mirror</text>
+          <g id="mirTiles"></g>
+          <text x="240" y="352" font-size="14" fill="var(--mirror)">10 of 18 stayed out of loops, and all 10 finished</text>
+        </g>
+        <g data-s="6" data-e="6">
+          <rect x="666" y="112" width="216" height="200" rx="6" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <text x="774" y="100" text-anchor="middle" font-size="14" class="mut">6 runs on levels with no exit</text>
+          <text x="774" y="390" text-anchor="middle" font-size="13" class="mut">no group could finish these</text>
+          <text x="60" y="410" font-size="15">Levels with an exit: Mirror finished <tspan class="m" fill="var(--mirror)">10 of 12</tspan>, Snapshot <tspan class="m" fill="var(--snap)">2 of 12</tspan></text>
+        </g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">A user said “three” in one session and “four” in a later one.</p><span class="zh" data-c="1">用户在早一点的对话里说"三家"，后来的对话里说"四家"。</span>
+        <p data-c="2">Sorted by relevance, the agent answered: three in one session and four in another.</p><span class="zh" data-c="2">按相关度排列时，智能体回答：一次说三家，一次说四家。</span>
+        <p data-c="3">With the Mirror, it saw which came later, and answered four.</p><span class="zh" data-c="3">有了镜子，它看得见哪一句在后，回答四家。</span>
+        <p data-c="4">When the environment changed silently, Snapshot agents looped in all 18 runs.</p><span class="zh" data-c="4">环境悄悄变了以后，快照组 18 局全部陷入循环。</span>
+        <p data-c="5">With the Mirror, 10 of 18 stayed out of loops, and all 10 finished the task.</p><span class="zh" data-c="5">有镜子的一组，18 局里有 10 局没有陷进循环，这 10 局全部完成了任务。</span>
+        <p data-c="6">Six of these runs had no exit at all. Where an exit existed, the Mirror finished 10 of 12, Snapshot 2 of 12.</p><span class="zh" data-c="6">其中 6 局所在的关卡根本没有出口。在有出口的关卡里，镜子做成 12 局里的 10 局，快照 2 局。</span>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="scene" data-name="Its own path" data-steps="5">
+      <div class="kicker">What the present hides · 3</div>
+      <h2>The agent’s own path</h2>
+      <svg viewBox="0 0 960 420" role="img" aria-label="Cumulative loop entries by step for Snapshot and Mirror agents">
+        <!-- x: step1..6 -> 160..760 ; y: 0..35 -> 360..90 (7.714 px per entry) -->
+        <g data-s="1">
+          <rect data-s="3" x="460" y="80" width="330" height="280" fill="var(--wash)"/>
+          <line class="grid" x1="140" y1="282.9" x2="800" y2="282.9"/><line class="grid" x1="140" y1="205.7" x2="800" y2="205.7"/><line class="grid" x1="140" y1="128.6" x2="800" y2="128.6"/>
+          <line class="ax" x1="140" y1="360" x2="800" y2="360"/>
+          <text x="128" y="365" text-anchor="end" class="mut m" font-size="13">0</text>
+          <text x="128" y="288" text-anchor="end" class="mut m" font-size="13">10</text>
+          <text x="128" y="211" text-anchor="end" class="mut m" font-size="13">20</text>
+          <text x="128" y="134" text-anchor="end" class="mut m" font-size="13">30</text>
+          <text x="160" y="386" text-anchor="middle" class="mut m" font-size="13">1</text><text x="280" y="386" text-anchor="middle" class="mut m" font-size="13">2</text><text x="400" y="386" text-anchor="middle" class="mut m" font-size="13">3</text><text x="520" y="386" text-anchor="middle" class="mut m" font-size="13">4</text><text x="640" y="386" text-anchor="middle" class="mut m" font-size="13">5</text><text x="760" y="386" text-anchor="middle" class="mut m" font-size="13">6</text>
+          <text x="460" y="410" text-anchor="middle" class="mut" font-size="14">step at which an episode first entered a loop</text>
+          <text x="40" y="60" class="mut" font-size="14">loop entries so far (lower is better)</text>
+          <rect x="560" y="40" width="14" height="4" fill="var(--snap)"/><text x="580" y="47" font-size="14">Snapshot: the present</text>
+          <rect x="560" y="60" width="14" height="4" fill="var(--mirror)"/><text x="580" y="67" font-size="14">Mirror: present + the path so far</text>
+        </g>
+        <g data-s="2">
+          <polyline points="160,360 280,313.7 400,144" fill="none" stroke="var(--snap)" stroke-width="3"/>
+          <polyline points="160,360 280,336.9 400,205.7" fill="none" stroke="var(--mirror)" stroke-width="3"/>
+          <circle cx="400" cy="144" r="5" fill="var(--snap)"/><circle cx="400" cy="205.7" r="5" fill="var(--mirror)"/>
+        </g>
+        <g data-s="3">
+          <text x="625" y="100" text-anchor="middle" font-size="14" class="mut">after step 3</text>
+          <polyline points="400,144 520,128.6 640,120.9 760,120.9" fill="none" stroke="var(--snap)" stroke-width="3"/>
+          <polyline points="400,205.7 520,205.7 640,205.7 760,205.7" fill="none" stroke="var(--mirror)" stroke-width="3"/>
+          <text x="772" y="126" class="m" font-size="18" fill="var(--snap)">31</text>
+          <text x="772" y="211" class="m" font-size="18" fill="var(--mirror)">20</text>
+          <text x="610" y="236" text-anchor="middle" font-size="15" fill="var(--mirror)">no new loops</text>
+        </g>
+        <g data-s="4">
+          <rect x="160" y="72" width="260" height="56" rx="5" fill="var(--panel)" stroke="var(--faint)"/>
+          <text x="176" y="95" font-size="13" class="mut">MemoryArena, public benchmark</text>
+          <text x="176" y="118" font-size="15">repeated identical searches <tspan class="m" fill="var(--snap)">15</tspan> → <tspan class="m" fill="var(--mirror)">0</tspan></text>
+        </g>
+        <g data-s="5">
+          <rect x="470" y="244" width="320" height="92" rx="5" fill="var(--panel)" stroke="var(--faint)"/>
+          <text x="486" y="268" font-size="13" class="mut">6 no-exit levels: both looped in all 18 runs</text>
+          <text x="486" y="293" font-size="15">levels with an exit: loops <tspan class="m" fill="var(--mirror)">2</tspan> vs <tspan class="m" fill="var(--snap)">13</tspan></text>
+          <text x="486" y="320" font-size="15">finished <tspan class="m" fill="var(--mirror)">75</tspan> vs <tspan class="m" fill="var(--snap)">66</tspan> of 126, in fewer steps</text>
+        </g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">Same task, same format. The Mirror adds one thing: the path, the last three steps and how they changed.</p><span class="zh" data-c="1">同样的任务、同样的格式，镜子只多给一样东西：走过的路，也就是最近三步和它们怎么变化。</span>
+        <p data-c="2">In the first steps, both groups fall into loops.</p><span class="zh" data-c="2">开头几步，两组都会掉进循环。</span>
+        <p data-c="3">After step 3, no Mirror agent entered a new loop. 20 against 31.</p><span class="zh" data-c="3">第三步以后，镜子组再没有一个掉进新的循环。20 对 31。</span>
+        <p data-c="4">The Mirror gives no instruction. The change of course is the agent’s own.</p><span class="zh" data-c="4">镜子不下任何指令，改道是智能体自己做的。</span>
+        <p data-c="5">Where an exit existed, Mirror agents looped 2 times against 13, and they finished more tasks in fewer steps.</p><span class="zh" data-c="5">在有出口的关卡里，镜子组掉坑 2 局，快照组 13 局；镜子组做成的也更多，用的步数更少。</span>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="scene" data-name="Drift" data-steps="4">
+      <div class="kicker">What the present hides · 4</div>
+      <h2>Drift from the goal, across handoffs</h2>
+      <svg viewBox="0 0 960 420" role="img" aria-label="Five handoffs between fresh agents and how many successors act correctly">
+        <!-- relay: steps 1-2 -->
+        <g data-s="1" data-e="2">
+          <line x1="140" y1="170" x2="820" y2="170" stroke="var(--faint)" stroke-width="2"/>
+          <g id="relay"></g>
+          <text x="480" y="260" text-anchor="middle" font-size="15" class="mut">each fresh agent receives an 800-token handover</text>
+        </g>
+        <g data-s="2" data-e="2">
+          <rect x="300" y="60" width="360" height="54" rx="5" fill="var(--wash)"/>
+          <text x="480" y="84" text-anchor="middle" font-size="15">goal switches for good: A → B</text>
+          <text x="480" y="104" text-anchor="middle" font-size="13" class="mut">later reports keep pointing back to A</text>
+          <text x="480" y="320" text-anchor="middle" font-size="16"><tspan fill="var(--snap)">Recent events</tspan> · the newest log entries, in time order</text>
+          <text x="480" y="348" text-anchor="middle" font-size="16"><tspan fill="var(--mirror)">Mirror</tspan> · rebuilt from the event log</text>
+        </g>
+        <!-- charts: steps 3-4. panel1 x 110..430 ; panel2 x 560..880 ; handoff 1..5 step 80 ; y 0..20 -> 360..180 (9px) -->
+        <g data-s="3" data-e="4" id="handoffCharts"></g>
+        <g data-s="4" data-e="4">
+          <text x="270" y="60" text-anchor="middle" font-size="15">adherence <tspan class="m" fill="var(--snap)">0.61</tspan> → <tspan class="m" fill="var(--mirror)">0.91</tspan></text>
+          <text x="720" y="60" text-anchor="middle" font-size="15">adherence <tspan class="m" fill="var(--snap)">0.53</tspan> → <tspan class="m" fill="var(--mirror)">0.82</tspan></text>
+        </g>
+      </svg>
+      <div class="caption">
+        <p data-c="1">A long task passes through five fresh agents. Each gets a short handover.</p><span class="zh" data-c="1">一个长任务经过五个新的智能体接力，每次交接只给一份很短的交接内容。</span>
+        <p data-c="2">The goal switches from A to B, but later reports make A look right again.</p><span class="zh" data-c="2">目标从 A 换成了 B，可后来的报告又让 A 看起来是对的。</span>
+        <p data-c="3">At the fifth handoff, with recent events only, 0 of 20 agents act correctly. With the Mirror, 16 of 20.</p><span class="zh" data-c="3">到第五次交接，只给最近事件的一组，20 个里 0 个做对；有镜子的一组，16 个做对。</span>
+        <p data-c="4">Across all five handoffs, adherence rose by about 0.3 on both models.</p><span class="zh" data-c="4">把五次交接合起来看，两个模型的守住目标程度都提高了约 0.3。</span>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="scene" data-name="In one line" data-steps="2">
+      <div class="kicker">Awareness Mirror</div>
+      <p class="big" data-s="1">Having the history and seeing the trajectory are different capabilities.</p>
+      <div class="close-grid" data-s="1">
+        <div class="k">Order and time</div><div>Same present, different past: <b>78 / 81</b> pairs told apart, against 5 and 0. LongMemEval <b>+14.7</b> points.</div>
+        <div class="k">Change</div><div>Silent change: Snapshot looped in 18 / 18. With the Mirror, <b>10</b> stayed out and all 10 finished; on levels with an exit, <b>10 / 12</b> against 2 / 12.</div>
+        <div class="k">Its own path</div><div>Loop entries <b>20</b> against 31, none new after step 3; on levels with an exit, <b>2</b> against 13. MemoryArena repeated searches 15 → <b>0</b>.</div>
+        <div class="k">Drift</div><div>Fifth handoff: <b>16 / 20</b> and <b>15 / 20</b> act correctly, against 0 and 1.</div>
+      </div>
+      <p class="big end" data-s="2">Agents need to see the path they are walking.</p>
+      <div class="caption">
+        <p data-c="1">Having the history and seeing the trajectory are different capabilities.</p><span class="zh" data-c="1">拥有历史和看见轨迹，是两种不同的能力。</span>
+        <p data-c="2">Agents need to see the path they are walking.</p><span class="zh" data-c="2">智能体需要看见自己正在走的路。</span>
+      </div>
+    </section>
+
+    <div class="bar">
+      <button id="prev" type="button">← Back</button>
+      <button id="next" class="next" type="button">Next →</button>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <button id="zh" type="button" aria-pressed="false">中文</button>
+      <span class="hint">Click, Space or → to continue</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;parent&&parent.appendChild(e);return e;}
+
+  // 18 tiles: Snapshot all looped; Mirror 10 finished, 8 looped
+  const sx=240, gap=36;
+  const snapG=document.getElementById("snapTiles"), mirG=document.getElementById("mirTiles");
+  for(let i=0;i<18;i++){
+    el("rect",{x:sx+i*gap,y:128,width:30,height:30,rx:4,fill:"var(--snap)",opacity:.85},snapG);
+    el("text",{x:sx+i*gap+15,y:149,"text-anchor":"middle","font-size":15,fill:"#fff"},snapG,"↻");
+    const ok=i<10;
+    el("rect",{x:sx+i*gap,y:268,width:30,height:30,rx:4,fill:ok?"var(--mirror)":"var(--faint)"},mirG);
+    el("text",{x:sx+i*gap+15,y:289,"text-anchor":"middle","font-size":15,fill:ok?"#fff":"var(--muted)"},mirG,ok?"✓":"↻");
+  }
+
+  // relay of five agents
+  const relay=document.getElementById("relay");
+  for(let i=0;i<5;i++){
+    const x=160+i*160;
+    el("circle",{cx:x,cy:170,r:26,fill:"var(--panel)",stroke:"var(--ink)","stroke-width":2},relay);
+    el("text",{x:x,y:176,"text-anchor":"middle","font-size":15,class:"m"},relay,"#"+(i+1));
+    if(i<4) el("text",{x:x+80,y:160,"text-anchor":"middle","font-size":13,fill:"var(--muted)"},relay,"handoff");
+  }
+
+  // handoff charts, data from the paper's Figure 4 script
+  const data=[
+    {name:"Claude Sonnet 4.6",x0:110,ev:[20,20,16,3,0],mi:[20,20,19,17,16]},
+    {name:"GPT-5.6 Terra",x0:560,ev:[20,19,12,2,1],mi:[20,20,16,11,15]}
+  ];
+  const hc=document.getElementById("handoffCharts");
+  const Y=v=>360-v*9;
+  data.forEach(p=>{
+    const X=i=>p.x0+20+i*70;
+    el("text",{x:p.x0+160,y:100,"text-anchor":"middle","font-size":15},hc,p.name);
+    [0,10,20].forEach(v=>{el("line",{x1:p.x0,y1:Y(v),x2:p.x0+320,y2:Y(v),class:"grid"},hc);el("text",{x:p.x0-8,y:Y(v)+5,"text-anchor":"end","font-size":12,class:"mut m"},hc,String(v));});
+    el("line",{x1:p.x0,y1:360,x2:p.x0+320,y2:360,class:"ax"},hc);
+    for(let i=0;i<5;i++) el("text",{x:X(i),y:382,"text-anchor":"middle","font-size":12,class:"mut m"},hc,String(i+1));
+    el("text",{x:p.x0+160,y:404,"text-anchor":"middle","font-size":13,class:"mut"},hc,"handoff");
+    [["ev","var(--snap)"],["mi","var(--mirror)"]].forEach(([k,c])=>{
+      el("polyline",{points:p[k].map((v,i)=>X(i)+","+Y(v)).join(" "),fill:"none",stroke:c,"stroke-width":3},hc);
+      p[k].forEach((v,i)=>el("circle",{cx:X(i),cy:Y(v),r:4,fill:c},hc));
+      el("text",{x:X(4)+12,y:Y(p[k][4])+5,"font-size":17,class:"m",fill:c},hc,String(p[k][4]));
+    });
+  });
+  el("text",{x:110,y:130,"font-size":13,class:"mut"},hc,"successors acting correctly, of 20");
+
+  // deck logic
+  const scenes=[...document.querySelectorAll(".scene")];
+  const nav=document.getElementById("nav"), dots=document.getElementById("dots");
+  let si=0, st=1;
+  scenes.forEach((s,i)=>{const b=document.createElement("button");b.type="button";b.textContent=s.dataset.name;b.addEventListener("click",e=>{e.stopPropagation();go(i,1);});nav.appendChild(b);});
+  function render(){
+    scenes.forEach((s,i)=>s.classList.toggle("active",i===si));
+    const s=scenes[si], max=+s.dataset.steps;
+    s.querySelectorAll("[data-s]").forEach(n=>{const a=+n.dataset.s, e=n.dataset.e?+n.dataset.e:99;n.classList.toggle("on",st>=a&&st<=e);});
+    s.querySelectorAll("[data-c]").forEach(n=>n.classList.toggle("on",+n.dataset.c===st));
+    [...nav.children].forEach((b,i)=>b.setAttribute("aria-current",i===si?"true":"false"));
+    dots.innerHTML="";for(let i=1;i<=max;i++){const d=document.createElement("i");if(i<=st)d.className="on";dots.appendChild(d);}
+    document.getElementById("prev").disabled=(si===0&&st===1);
+    document.getElementById("next").disabled=(si===scenes.length-1&&st===max);
+  }
+  function go(i,s){si=Math.max(0,Math.min(scenes.length-1,i));st=s;render();}
+  function next(){const max=+scenes[si].dataset.steps;if(st<max){st++;render();}else if(si<scenes.length-1)go(si+1,1);}
+  function prev(){if(st>1){st--;render();}else if(si>0)go(si-1,+scenes[si-1].dataset.steps);}
+  document.getElementById("stage").addEventListener("click",e=>{if(e.target.closest("button"))return;next();});
+  document.getElementById("next").addEventListener("click",e=>{e.stopPropagation();next();});
+  document.getElementById("prev").addEventListener("click",e=>{e.stopPropagation();prev();});
+  const zhBtn=document.getElementById("zh");
+  zhBtn.addEventListener("click",e=>{e.stopPropagation();const on=document.getElementById("app").classList.toggle("zh-on");zhBtn.setAttribute("aria-pressed",on?"true":"false");});
+  document.addEventListener("keydown",e=>{
+    if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){e.preventDefault();next();}
+    else if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();prev();}
+  });
+  render();
+})();
+</script>
+
+</body></html>
