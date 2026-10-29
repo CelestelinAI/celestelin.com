@@ -65,6 +65,9 @@ svg .grid{stroke:var(--wash);stroke-width:1;fill:none}
 .dots i.on{background:var(--mirror)}
 .hint{margin-left:auto;font-size:12px;color:var(--muted)}
 
+.whytext{display:flex;flex-direction:column;gap:14px;max-width:46em;margin:10px 0 4px}
+.whytext p{margin:0;font-family:var(--display);font-size:clamp(19px,2.2vw,25px);line-height:1.35;text-wrap:pretty}
+.whytext p.end{color:var(--mirror)}
 /* closing scene */
 .close-grid{display:grid;grid-template-columns:minmax(0,11em) minmax(0,1fr);gap:0;border-top:1px solid var(--faint)}
 .close-grid > div{padding:10px 8px;border-bottom:1px solid var(--faint);min-width:0}
@@ -301,6 +304,24 @@ svg .grid{stroke:var(--wash);stroke-width:1;fill:none}
         <p data-c="3">After step 3, Snapshot agents still fell into 3 new loops. No Mirror agent did.</p><span class="zh" data-c="3">第三步以后，快照组还在新掉坑，又掉了 3 次；镜子组一次也没有。</span>
         <p data-c="4">The Mirror gives no instruction. The change of course is the agent’s own.</p><span class="zh" data-c="4">镜子不下任何指令，改道是智能体自己做的。</span>
         <p data-c="5">Where an exit existed, Mirror agents looped 2 times against 13, and they finished more tasks in fewer steps.</p><span class="zh" data-c="5">在有出口的关卡里，镜子组掉坑 2 局，快照组 13 局；镜子组做成的也更多，用的步数更少。</span>
+      </div>
+    </section>
+
+    <!-- 4a · why drift -->
+    <section class="scene" data-name="Why drift" data-steps="4">
+      <div class="kicker">What the present hides · 4</div>
+      <h2>Drift, and the rules an agent keeps</h2>
+      <div class="whytext">
+        <p data-s="1">Drift is the most deceptive kind of failure: every step looks right, while the work moves far from its original intent and goal.</p>
+        <p data-s="2">The same holds for the values and rules an agent is meant to protect.</p>
+        <p data-s="3">As a long-running agent accumulates information and actions, it may retain a rule while gradually losing the reasons, context, and commitments that originally gave that rule its meaning. Once that meaning is diluted, the rule itself becomes fragile.</p>
+        <p data-s="4" class="end">The Mirror keeps where a rule came from in view, at the moment of decision.</p>
+      </div>
+      <div class="caption">
+        <span class="zh" data-c="1">漂移是最狡猾的一种失败：每一步看起来都对，工作却已经离当初的初衷和目标很远了。</span>
+        <span class="zh" data-c="2">agent 要守护的价值和规则，也是这样。</span>
+        <span class="zh" data-c="3">长期运行的 agent 不断积累信息和动作，可能还留着一条规则，却渐渐丢掉了当初赋予这条规则意义的原因、情境和承诺。意义一旦被稀释，规则本身就变得脆弱。</span>
+        <span class="zh" data-c="4">在做决定的那一刻，镜子把规则从哪里来一直摆在眼前。</span>
       </div>
     </section>
 
