@@ -431,7 +431,7 @@ svg .mut{fill:var(--muted)}
   (function(){
     const rows=[["A","current turn",.589,.599],["B","current turn + surface cues",.590,.625],["C3","last 3 turns",.419,.529],["C5","last 5 turns",.609,.538],
       ["D1","content summary",.498,.511],["D2","dynamics summary",.600,.678],["E","whole history",.463,.448],
-      ["F","State · 16 numbers",.731,.710],["G","+ Action · 24 numbers",.713,.716],["H","+ Flow · 37 numbers",.690,.729]];
+      ["F","State · 16 numbers",.731,.710],["G","+ Action · 24 numbers",.713,.716],["H","+ Flow · 37 numbers",.690,.732]];
     const X=v=>330+(v-.4)*1475, C=X(.5), gi=document.getElementById("raceInfo"), gf=document.getElementById("raceField"), gh=document.getElementById("raceHi");
     rows.forEach((r,i)=>{const field=i>=7;const y=56+i*37+(field?14:0);const g=field?gf:gi;
       const col=field?"var(--field)":"var(--info)";
