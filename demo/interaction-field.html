@@ -253,7 +253,7 @@ svg .mut{fill:var(--muted)}
         <div class="row" data-s="2">
           <div class="c q"><b>STUDY 1 · PREDICT</b><span>What does the field tell us about what comes next?</span></div>
           <div class="c d">Raced ten views of the same history, from the current turn to the full history, against State, State + Action and State + Action + Flow. Two independent sets: 28 conversations, 1,044 cutoffs.</div>
-          <div class="c r">State carries predictive signal for upcoming correction: AUROC <em>.702</em> and <em>.700</em>, against <em>.457</em> and <em>.497</em> for the full history. Field readings also anticipate how the interaction moves next, including drops in Ground and Carry.</div>
+          <div class="c r">State carries predictive signal for upcoming correction: AUROC <em>.731</em> and <em>.710</em>, against <em>.463</em> and <em>.448</em> for the full history. Field readings also anticipate how the interaction moves next, including drops in Ground and Carry.</div>
         </div>
         <div class="row" data-s="3">
           <div class="c q"><b>STUDY 2 · ACT</b><span>Does the timing of an Action matter?</span></div>
@@ -268,7 +268,7 @@ svg .mut{fill:var(--muted)}
       </div>
       <div class="caption">
         <span class="zh" data-c="1">Study 0 · 测量：场能不能被测出来？独立观察者盲读 94 个时刻，每个序数维度都在一分以内一致。</span>
-        <span class="zh" data-c="2">Study 1 · 预测：场告诉我们下一步什么？两批独立对话，State 带着下一位说话者会不会纠正的预测信号，AUROC .702 / .700，完整历史只有 .457 / .497；场的读数还能提前看出互动下一步往哪里走，包括 Ground 和 Carry 的下降。</span>
+        <span class="zh" data-c="2">Study 1 · 预测：场告诉我们下一步什么？两批独立对话，State 带着下一位说话者会不会纠正的预测信号，AUROC .731 / .710，完整历史只有 .463 / .448；场的读数还能提前看出互动下一步往哪里走，包括 Ground 和 Carry 的下降。</span>
         <span class="zh" data-c="3">Study 2 · 行动：Action 的时机重要吗？把同样的 Action 挪到别的时刻，预测下一个 State 就变差。</span>
         <span class="zh" data-c="4">Study 3 · 持续：记忆和场能分开吗？同一份记忆，三段场完全不同；记忆通道空了，新一段的场仍然最接近上一段的结尾。</span>
       </div>
@@ -300,7 +300,7 @@ svg .mut{fill:var(--muted)}
       <div class="caption">
         <p data-c="1">Seven ways to hand the history over as text, from the last turn to the whole conversation.</p><span class="zh" data-c="1">七种把历史当文字交给模型的方法，从只看最后一轮到整段对话全给。</span>
         <p data-c="2">Three field readings: State, then State plus Action, then plus Flow.</p><span class="zh" data-c="2">三种场的读数：State，再加 Action，再加 Flow。</span>
-        <p data-c="3">Whole-history embeddings stay near a coin flip. The 16-number State reaches .70 in both sets. It carries predictive signal about the next turn, while the next turn remains open.</p><span class="zh" data-c="3">整段历史的嵌入停在抛硬币附近；16 个数的 State 在两批数据里都到了 .70。它带着关于下一轮的预测信号，下一轮本身依然是开放的。</span>
+        <p data-c="3">Whole-history embeddings stay near a coin flip. The 16-number State reaches .73 and .71. It carries predictive signal about the next turn, while the next turn remains open.</p><span class="zh" data-c="3">整段历史的嵌入停在抛硬币附近；16 个数的 State 在两批数据里分别到了 .73 和 .71。它带着关于下一轮的预测信号，下一轮本身依然是开放的。</span>
       </div>
     </section>
 
@@ -429,9 +429,9 @@ svg .mut{fill:var(--muted)}
 
   // Study 1 race: best AUROC per condition, from the paper's table
   (function(){
-    const rows=[["A","current turn",.582,.599],["B","current turn + surface cues",.571,.625],["C3","last 3 turns",.540,.529],["C5","last 5 turns",.610,.593],
-      ["D1","content summary",.492,.456],["D2","dynamics summary",.599,.678],["E","whole history",.457,.497],
-      ["F","State · 16 numbers",.702,.700],["G","+ Action · 24 numbers",.713,.730],["H","+ Flow · 37 numbers",.685,.734]];
+    const rows=[["A","current turn",.589,.599],["B","current turn + surface cues",.590,.625],["C3","last 3 turns",.419,.529],["C5","last 5 turns",.609,.538],
+      ["D1","content summary",.498,.511],["D2","dynamics summary",.600,.678],["E","whole history",.463,.448],
+      ["F","State · 16 numbers",.731,.710],["G","+ Action · 24 numbers",.713,.716],["H","+ Flow · 37 numbers",.690,.729]];
     const X=v=>330+(v-.4)*1475, C=X(.5), gi=document.getElementById("raceInfo"), gf=document.getElementById("raceField"), gh=document.getElementById("raceHi");
     rows.forEach((r,i)=>{const field=i>=7;const y=56+i*37+(field?14:0);const g=field?gf:gi;
       const col=field?"var(--field)":"var(--info)";
