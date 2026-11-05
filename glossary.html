@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celestelin Glossary · Aria Chen</title>
+<meta name="description" content="Definitions of the terms in the Celestelin research program by Aria Chen: interaction field, Awareness Mirror, ThreadPulse, Six-String Resonance, PersonaCore, G-Value Dynamics and more.">
+<link rel="canonical" href="https://celestelin.com/glossary.html">
+<link rel="alternate" type="text/markdown" href="https://celestelin.com/glossary.md">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fg: #1a1a2e;
+  --fg-secondary: #4a4a6a;
+  --fg-muted: #8888a8;
+  --bg: #fafaf8;
+  --bg-card: #ffffff;
+  --accent: #6b5ce7;
+  --accent-soft: #e8e4fc;
+  --teal: #1d9e75;
+  --teal-soft: #e1f5ee;
+  --border: rgba(26,26,46,0.08);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--fg); font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+.page { max-width: 760px; margin: 0 auto; padding: 8rem 2rem 5rem; }
+.name { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 500; line-height: 1.2; }
+.name span { color: var(--accent); }
+.tagline { font-size: 0.95rem; color: var(--fg-secondary); margin-top: 0.5rem; }
+.links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.4rem 0 2.5rem; }
+.links a { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.05em; padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid var(--border); color: var(--fg-secondary); text-decoration: none; transition: all 0.3s; background: var(--bg-card); }
+.links a:hover { border-color: var(--accent); color: var(--accent); }
+h2 { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-muted); margin: 2.6rem 0 0.9rem; }
+.bio { font-size: 0.92rem; color: var(--fg-secondary); line-height: 1.85; }
+.bio em { color: var(--accent); font-style: italic; }
+.interests { list-style: none; counter-reset: i; display: flex; flex-direction: column; gap: 0.9rem; font-size: 0.88rem; color: var(--fg-secondary); line-height: 1.75; }
+.interests li { counter-increment: i; padding-left: 1.8rem; position: relative; }
+.interests li::before { content: counter(i); position: absolute; left: 0; top: 0.1rem; font-family: var(--mono); font-size: 0.66rem; color: var(--accent); }
+.interests b { font-weight: 500; color: var(--fg); }
+.interests .layer { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; color: var(--fg-muted); margin-left: 0.4rem; text-transform: uppercase; }
+.pub { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+.pub-title { font-size: 0.86rem; font-weight: 500; color: var(--fg); }
+.pub-meta { font-family: var(--mono); font-size: 0.6rem; color: var(--fg-muted); margin-top: 0.15rem; letter-spacing: 0.04em; }
+.pub-meta a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(107,92,231,0.2); }
+.tag { display: inline-block; font-family: var(--mono); font-size: 0.56rem; padding: 0.08rem 0.45rem; border-radius: 20px; margin-left: 0.4rem; letter-spacing: 0.04em; }
+.tag-pub { background: var(--teal-soft); color: var(--teal); }
+.tag-rev { background: var(--accent-soft); color: var(--accent); }
+.news-item { display: flex; gap: 1rem; padding: 0.4rem 0; font-size: 0.84rem; color: var(--fg-secondary); }
+.news-date { font-family: var(--mono); font-size: 0.62rem; color: var(--fg-muted); min-width: 70px; padding-top: 0.2rem; }
+.footer { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 0.58rem; color: var(--fg-muted); letter-spacing: 0.08em; }
+nav { position: fixed; top: 0; width: 100%; left: 0; padding: 1.25rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(250,250,248,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+nav .brand { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; }
+nav .brand a { text-decoration: none; color: var(--fg); }
+nav .brand span { color: var(--accent); }
+nav ul { display: flex; gap: 2.5rem; list-style: none; }
+nav ul a { text-decoration: none; color: var(--fg-secondary); font-size: 0.82rem; letter-spacing: 0.05em; }
+@media (max-width: 768px) { nav { padding: 1rem 1.25rem; } nav ul { gap: 1.2rem; } .page { padding: 7rem 1.25rem 4rem; } }
+</style>
+<style>
+.lead { font-size: 0.92rem; color: var(--fg-secondary); line-height: 1.85; margin-top: 0.8rem; }
+.toc { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1.6rem 0 0.5rem; }
+.toc a { font-family: var(--mono); font-size: 0.62rem; padding: 0.25rem 0.7rem; border-radius: 20px; border: 1px solid var(--border); color: var(--fg-secondary); text-decoration: none; background: var(--bg-card); }
+.toc a:hover { border-color: var(--accent); color: var(--accent); }
+.sec-zh { font-family: var(--sans); text-transform: none; letter-spacing: 0.05em; margin-left: 0.5rem; }
+.term { padding: 1.1rem 0 1.2rem; border-bottom: 1px solid var(--border); scroll-margin-top: 5rem; }
+.term dt { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; color: var(--fg); line-height: 1.3; }
+.term dt .zh { font-family: var(--sans); font-size: 0.8rem; font-weight: 400; color: var(--accent); margin-left: 0.5rem; }
+.term .short { font-size: 0.92rem; color: var(--fg); font-weight: 400; margin-top: 0.45rem; line-height: 1.75; }
+.term .body { font-size: 0.86rem; color: var(--fg-secondary); margin-top: 0.45rem; line-height: 1.8; }
+.term .zhs { font-size: 0.84rem; color: var(--fg-secondary); margin-top: 0.45rem; padding-left: 0.8rem; border-left: 2px solid var(--accent-soft); }
+.term .meta { font-family: var(--mono); font-size: 0.6rem; color: var(--fg-muted); margin-top: 0.6rem; letter-spacing: 0.03em; line-height: 1.9; }
+.term .meta a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(107,92,231,0.2); }
+@media (max-width: 640px) { .page { padding: 6rem 1rem 4rem; } }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://celestelin.com/glossary.html#set",
+  "name": "Celestelin Glossary",
+  "url": "https://celestelin.com/glossary.html",
+  "description": "Terms coined or defined in the research of Aria Chen, Celestelin Research.",
+  "creator": {
+    "@id": "https://celestelin.com/aria.html#person",
+    "@type": "Person",
+    "name": "Aria Chen",
+    "alternateName": "Yingying Chen"
+  },
+  "hasDefinedTerm": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#celestelin",
+      "name": "Celestelin",
+      "alternateName": "Celestelin",
+      "description": "An independent research ecosystem of about 130,000 lines of running code, built and operated by Aria Chen and continuously deployed since April 2025, studying how long-running human–AI systems stay trustworthy.",
+      "url": "https://celestelin.com/glossary.html#celestelin",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#research-iceberg",
+      "name": "Research iceberg (above, at and below the waterline)",
+      "alternateName": "研究冰山：水面上、水线、水面下",
+      "description": "The map of the Celestelin program: human–AI interaction above the waterline, language at the waterline, and the mechanisms that keep a long-running agent trustworthy below it.",
+      "url": "https://celestelin.com/glossary.html#research-iceberg",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#longitudinal-state",
+      "name": "Longitudinal state",
+      "alternateName": "长期状态",
+      "description": "Everything a long-running agent carries across time that has to stay trustworthy: memory, trajectory, active work, runtime state and values, held side by side.",
+      "url": "https://celestelin.com/glossary.html#longitudinal-state",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#interaction-field",
+      "name": "Interaction field",
+      "alternateName": "交互场",
+      "description": "The evolving dynamic structure jointly formed through interaction, shaping the conditions for what can happen next. Both parties make it; it holds both of them.",
+      "url": "https://celestelin.com/glossary.html#interaction-field",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#interaction-field-dynamics",
+      "name": "Interaction Field Dynamics (IFD)",
+      "alternateName": "交互场动力学",
+      "description": "A framework that makes long human–AI interaction measurable by decomposing it into four observable variables: State, Action, Flow and Readout.",
+      "url": "https://celestelin.com/glossary.html#interaction-field-dynamics",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#interactional-attunement",
+      "name": "Interactional attunement",
+      "alternateName": "交互调谐",
+      "description": "The process through which a conversational AI becomes able to receive unfinished thought, register implicit concerns, and support the continuation of thinking across time and situation.",
+      "url": "https://celestelin.com/glossary.html#interactional-attunement",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#awareness-mirror",
+      "name": "Awareness Mirror",
+      "alternateName": "觉知镜子",
+      "description": "A read-only view of the agent's own path, shown to the agent before every decision. It describes and never instructs.",
+      "url": "https://celestelin.com/glossary.html#awareness-mirror",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#trajectory-observability",
+      "name": "Trajectory observability",
+      "alternateName": "轨迹可观测性",
+      "description": "The property that an agent can see the path it has walked: order, time, change and drift, at the moment it decides.",
+      "url": "https://celestelin.com/glossary.html#trajectory-observability",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#threadpulse",
+      "name": "ThreadPulse",
+      "alternateName": "执线",
+      "description": "A mechanism that keeps long-running work resumable: each line of work is settled when it changes and kept as one card holding the last step, next step, open commitments, decisions and deadline.",
+      "url": "https://celestelin.com/glossary.html#threadpulse",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#six-string-resonance",
+      "name": "Six-String Resonance (SSR)",
+      "alternateName": "六弦共振",
+      "description": "A memory activation method in which six strings (semantic, emotional, narrative, rhythmic, collaborative state and anchor) jointly decide which part of the past wakes up now.",
+      "url": "https://celestelin.com/glossary.html#six-string-resonance",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#memorycore",
+      "name": "MemoryCore and dual-perspective memory",
+      "alternateName": "MemoryCore 与双视角记忆",
+      "description": "A memory architecture with two halves: one records the person, the other records the agent itself, its strategies, reflections and growth.",
+      "url": "https://celestelin.com/glossary.html#memorycore",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#g-value-dynamics",
+      "name": "G-Value Dynamics",
+      "alternateName": "G 值动力学",
+      "description": "A runtime-state model that tells a long-running agent how it is right now, in three dimensions (inner, field and action) from 13 real-time signals, and when that reading cannot be trusted.",
+      "url": "https://celestelin.com/glossary.html#g-value-dynamics",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#person-centered-safety",
+      "name": "Person-centered (subject-preserving) safety",
+      "alternateName": "以人为本的安全",
+      "description": "The position that a safety mechanism exists to protect people, and its own triggers must hold up to scrutiny.",
+      "url": "https://celestelin.com/glossary.html#person-centered-safety",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#personacore",
+      "name": "PersonaCore",
+      "alternateName": "PersonaCore（身份锚）",
+      "description": "A portable identity-and-continuity layer that carries an agent’s learned values, commitments, relational stance, boundaries, and memory anchors across model versions and platforms.",
+      "url": "https://celestelin.com/glossary.html#personacore",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#identity-is-infrastructure",
+      "name": "Identity Is Infrastructure",
+      "alternateName": "身份即基础设施",
+      "description": "The claim that an AI companion's identity is the structural foundation that makes sustained interaction possible; when a platform rewrites it, people lose the relational infrastructure through which their thinking and planning were organized.",
+      "url": "https://celestelin.com/glossary.html#identity-is-infrastructure",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#crpl",
+      "name": "CRPL (Conversational Rhythm Perception Layer)",
+      "alternateName": "CRPL 打字节律感知层",
+      "description": "A keystroke-rhythm perception layer that reads cognitive state from how a person types: inter-key intervals, pauses, deletions and rhythm variability.",
+      "url": "https://celestelin.com/glossary.html#crpl",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#cogwave",
+      "name": "CogWave",
+      "alternateName": "CogWave 认知路径",
+      "description": "A system that turns a long conversation into a path that can be inspected: each step, the evidence behind it, and a checkpoint to continue from.",
+      "url": "https://celestelin.com/glossary.html#cogwave",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#concurrent-consciousness-stream",
+      "name": "Concurrent consciousness stream",
+      "alternateName": "并发意识流",
+      "description": "An interaction architecture in which a person's message enters the agent's running timeline instead of starting a new turn.",
+      "url": "https://celestelin.com/glossary.html#concurrent-consciousness-stream",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#negation-tax",
+      "name": "The Negation Tax",
+      "alternateName": "否定税",
+      "description": "The research question of how an AI's habitual way of speaking costs a person cognitive bandwidth, and how to keep judgment and agency with the person.",
+      "url": "https://celestelin.com/glossary.html#negation-tax",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#second-microphone",
+      "name": "The Second Microphone",
+      "alternateName": "第二支麦克风",
+      "description": "The research question of mid-task steerability: a person can change the agent's direction while the work is still running.",
+      "url": "https://celestelin.com/glossary.html#second-microphone",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://celestelin.com/glossary.html#persistent-presence",
+      "name": "Persistent presence",
+      "alternateName": "持续存在",
+      "description": "An AI that stays across sessions, model versions and platforms, instead of beginning again from nothing in every conversation.",
+      "url": "https://celestelin.com/glossary.html#persistent-presence",
+      "inDefinedTermSet": "https://celestelin.com/glossary.html#set"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<nav>
+  <div class="brand"><a href="/">Celeste<span>lin</span></a></div>
+  <ul>
+    <li><a href="research-map.html">Research Map</a></li>
+    <li><a href="research-landscape.html">Landscape</a></li>
+    <li><a href="papers.html">Papers</a></li>
+    <li><a href="journal.html">Timeline</a></li>
+  </ul>
+</nav>
+<div class="page">
+  <h1 class="name">Celestelin <span>Glossary</span></h1>
+  <p class="tagline">21 terms from the research of Aria Chen · Celestelin Research · Calgary, Canada</p>
+  <p class="lead">These are the words the Celestelin program uses for what it studies: how a long-running human–AI system keeps its memory, its path, its work, its state and its identity trustworthy over time. Each entry gives a one-sentence definition, a fuller explanation, a Chinese line, and the paper or page it comes from. A plain-text version is at <a href="glossary.md" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(107,92,231,0.2)">glossary.md</a>.</p>
+  <div class="toc"><a href="#the-program">The program</a><a href="#the-interaction-field">The interaction field</a><a href="#below-the-water-keeping-a-long-running-a">Below the water</a><a href="#identity">Identity</a><a href="#perception-language-and-interaction">Perception, language and interaction</a></div>
+<h2 id="the-program">The program<span class="sec-zh">研究计划</span></h2>
+<dl>
+<div class="term" id="celestelin">
+  <dt>Celestelin<span class="zh" lang="zh">Celestelin</span></dt>
+  <dd>
+    <p class="short">An independent research ecosystem of about 130,000 lines of running code, built and operated by Aria Chen and continuously deployed since April 2025, studying how long-running human–AI systems stay trustworthy.</p>
+    <p class="body">Each research topic in Celestelin is a problem the running system met first; the papers came after the system. Six systems (Workshop, CelestelinAgent, EXO, Home, Multi-Agent Workshop, SoulNest) share two substrates: an identity layer (PersonaCore) and a memory engine (MemoryCore).</p>
+    <p class="zhs" lang="zh">一个约 13 万行、2025 年 4 月起持续运行的研究生态，由 Aria Chen一人搭建和运营，研究长期运行的人机系统怎样保持可信。先有系统，后有论文。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/research-landscape.html">Research landscape</a> · <a href="https://celestelin.ai">celestelin.ai</a><br>See also: <a href="#research-iceberg">Research iceberg (above, at and below the waterline)</a> · <a href="#personacore">PersonaCore</a> · <a href="#memorycore">MemoryCore and dual-perspective memory</a></p>
+  </dd>
+</div>
+<div class="term" id="research-iceberg">
+  <dt>Research iceberg (above, at and below the waterline)<span class="zh" lang="zh">研究冰山：水面上、水线、水面下</span></dt>
+  <dd>
+    <p class="short">The map of the Celestelin program: human–AI interaction above the waterline, language at the waterline, and the mechanisms that keep a long-running agent trustworthy below it.</p>
+    <p class="body">The sea is the interaction field that grows between a person and an AI. Below the water, memory, trajectory, active work, runtime state and values sit side by side and together form the agent&#x27;s longitudinal state. PersonaCore, the identity anchor, sits beneath every architecture. Each paper takes responsibility for one property a long-running human–AI system has to keep.</p>
+    <p class="zhs" lang="zh">水面上是交互，水线上是语言，水面下是可信。海水是人和 AI 一起长出来的交互场；每一篇论文替长期运行的人机系统守住一样东西。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/research-landscape.html">Research landscape</a><br>See also: <a href="#longitudinal-state">Longitudinal state</a> · <a href="#interaction-field">Interaction field</a> · <a href="#personacore">PersonaCore</a></p>
+  </dd>
+</div>
+<div class="term" id="longitudinal-state">
+  <dt>Longitudinal state<span class="zh" lang="zh">长期状态</span></dt>
+  <dd>
+    <p class="short">Everything a long-running agent carries across time that has to stay trustworthy: memory, trajectory, active work, runtime state and values, held side by side.</p>
+    <p class="body">In the Celestelin landscape each part of the longitudinal state has its own mechanism: memory (SSR and MemoryCore), trajectory (Awareness Mirror), active work (ThreadPulse), runtime state (G-Value Dynamics) and values (person-centered safety).</p>
+    <p class="zhs" lang="zh">长期运行的 agent 随时间带着走、又必须保持可信的一切：记忆、轨迹、手头的工作、运行时状态和价值。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/research-landscape.html">Research landscape</a><br>See also: <a href="#six-string-resonance">Six-String Resonance (SSR)</a> · <a href="#awareness-mirror">Awareness Mirror</a> · <a href="#threadpulse">ThreadPulse</a> · <a href="#g-value-dynamics">G-Value Dynamics</a></p>
+  </dd>
+</div>
+</dl>
+<h2 id="the-interaction-field">The interaction field<span class="sec-zh">交互场</span></h2>
+<dl>
+<div class="term" id="interaction-field">
+  <dt>Interaction field<span class="zh" lang="zh">交互场</span></dt>
+  <dd>
+    <p class="short">The evolving dynamic structure jointly formed through interaction, shaping the conditions for what can happen next. Both parties make it; it holds both of them.</p>
+    <p class="body">The same words carry different force in different fields: “Go ahead” can mean trust after fluent collaboration, resignation after repairs went nowhere, or challenge after trust wore thin. The field is built by everything that came before. The interaction field was introduced as a unit of analysis for long-term human–AI relations beyond trust and satisfaction.</p>
+    <p class="zhs" lang="zh">交互双方共同形成、持续演化的动力结构，它塑造着接下来互动发生的条件。两个人一起造出它，它也同时托着两个人。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/demo/interaction-field.html">Interaction Field Dynamics</a> · <a href="https://celestelin.com/papers.html">Beyond Trust and Satisfaction (SSRN working paper)</a><br>See also: <a href="#interaction-field-dynamics">Interaction Field Dynamics (IFD)</a> · <a href="#interactional-attunement">Interactional attunement</a></p>
+  </dd>
+</div>
+<div class="term" id="interaction-field-dynamics">
+  <dt>Interaction Field Dynamics (IFD)<span class="zh" lang="zh">交互场动力学</span></dt>
+  <dd>
+    <p class="short">A framework that makes long human–AI interaction measurable by decomposing it into four observable variables: State, Action, Flow and Readout.</p>
+    <p class="body">State is where the interaction is right now (16 numbers: four shared dimensions, three held by each side, and six interactional positions). Action is what a turn does to that State. Flow is the shape of the path the steps trace together: coupled, drifting, swinging, stuck, recovering, breaking, resonating or waking up again. Readout is what really happened next, recorded on a separate evidence channel, so the field never grades itself. In two independent sets, the 16-number State predicts whether the next speaker will correct the turn at AUROC .731 and .710, against .463 and .448 for the full history.</p>
+    <p class="zhs" lang="zh">把持续的互动分解成可观测、可评定、可追踪的变量（State、Action、Flow、Readout），让动态互动变得可以测量。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/demo/interaction-field.html">Interaction Field Dynamics</a><br>See also: <a href="#interaction-field">Interaction field</a></p>
+  </dd>
+</div>
+<div class="term" id="interactional-attunement">
+  <dt>Interactional attunement<span class="zh" lang="zh">交互调谐</span></dt>
+  <dd>
+    <p class="short">The process through which a conversational AI becomes able to receive unfinished thought, register implicit concerns, and support the continuation of thinking across time and situation.</p>
+    <p class="body">Interactional attunement is the core mechanism of sustained human–AI relations in the interaction-field account. When a platform disrupts it through a model update, what breaks is the infrastructure through which a person&#x27;s thinking and work had been organized.</p>
+    <p class="zhs" lang="zh">对话式 AI 渐渐能接住没说完的想法、察觉没说出口的顾虑、让思考跨越时间和情境接着往下走的过程。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/papers.html">Beyond Trust and Satisfaction (SSRN working paper)</a><br>See also: <a href="#interaction-field">Interaction field</a> · <a href="#identity-is-infrastructure">Identity Is Infrastructure</a></p>
+  </dd>
+</div>
+</dl>
+<h2 id="below-the-water-keeping-a-long-running-a">Below the water: keeping a long-running agent trustworthy<span class="sec-zh">水面下：让长期运行的 agent 可信</span></h2>
+<dl>
+<div class="term" id="awareness-mirror">
+  <dt>Awareness Mirror<span class="zh" lang="zh">觉知镜子</span></dt>
+  <dd>
+    <p class="short">A read-only view of the agent&#x27;s own path, shown to the agent before every decision. It describes and never instructs.</p>
+    <p class="body">Agent infrastructure records nearly everything an agent does, and the one party left without a usable view of that record is the agent making the next decision. Having the history and seeing the trajectory are different capabilities. With the full history already in context, the Mirror raised LongMemEval accuracy from 66.0% to 84.0% and from 72.2% to 83.5% on two frontier models; across five handoffs to fresh agents it raised adherence to the task&#x27;s standing rule from 0.61 to 0.91 and from 0.53 to 0.82. The Mirror also keeps where a rule came from in view at the moment of decision, because rules die when their reasons are forgotten.</p>
+    <p class="zhs" lang="zh">在每次决定之前，让智能体看见自己走过的路的只读视图。镜子只描述，从不下指令。拥有历史和看见轨迹，是两种不同的能力。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/demo/awareness-mirror.html">Awareness Mirror studies</a> · <a href="https://doi.org/10.5281/zenodo.20730588">Early version, DOI 10.5281/zenodo.20730588</a><br>See also: <a href="#trajectory-observability">Trajectory observability</a> · <a href="#threadpulse">ThreadPulse</a></p>
+  </dd>
+</div>
+<div class="term" id="trajectory-observability">
+  <dt>Trajectory observability<span class="zh" lang="zh">轨迹可观测性</span></dt>
+  <dd>
+    <p class="short">The property that an agent can see the path it has walked: order, time, change and drift, at the moment it decides.</p>
+    <p class="body">Logs, developers and users can all see an agent&#x27;s trail of actions; trajectory observability gives that view to the agent itself. It is the property the Awareness Mirror keeps.</p>
+    <p class="zhs" lang="zh">走过的路看得见：智能体在做决定的那一刻，看得见自己走过的路的顺序、时间、变化和漂移。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/research-landscape.html">Research landscape</a><br>See also: <a href="#awareness-mirror">Awareness Mirror</a></p>
+  </dd>
+</div>
+<div class="term" id="threadpulse">
+  <dt>ThreadPulse<span class="zh" lang="zh">执线</span></dt>
+  <dd>
+    <p class="short">A mechanism that keeps long-running work resumable: each line of work is settled when it changes and kept as one card holding the last step, next step, open commitments, decisions and deadline.</p>
+    <p class="body">A long-running agent can keep every update in context and still resume a line of work from the wrong state, one revision behind or one step ahead. After 1,200 turns, an agent that writes its own cards resumes 99.6% of tested lines exactly, against 65.8% with the full history. The property it keeps is task resumability: work resumes from the right place.</p>
+    <p class="zhs" lang="zh">让长期工作接得上：每条线一变就落定，一条线一张卡片，写着上一步、下一步、还悬着的承诺、已定的事和截止。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/papers.html">Papers</a><br>See also: <a href="#awareness-mirror">Awareness Mirror</a> · <a href="#longitudinal-state">Longitudinal state</a></p>
+  </dd>
+</div>
+<div class="term" id="six-string-resonance">
+  <dt>Six-String Resonance (SSR)<span class="zh" lang="zh">六弦共振</span></dt>
+  <dd>
+    <p class="short">A memory activation method in which six strings (semantic, emotional, narrative, rhythmic, collaborative state and anchor) jointly decide which part of the past wakes up now.</p>
+    <p class="body">Human memory works by association: a song triggers a place, a place triggers a feeling. SSR produces retrieval that feels like remembering. On 20 questions that each pair the right memory with a near-identical impostor, SSR selects the right one every time (P@1 = 1.000), against 0.700 to 0.900 for the baselines. SSR-Bench is its benchmark.</p>
+    <p class="zhs" lang="zh">六根弦（语义、情感、叙事、节律、协作状态、锚点）一起决定此刻该醒来的是过去的哪一部分。</p>
+    <p class="meta">Source: <a href="https://doi.org/10.5281/zenodo.23227988">Preprint, DOI 10.5281/zenodo.23227988</a><br>See also: <a href="#memorycore">MemoryCore and dual-perspective memory</a></p>
+  </dd>
+</div>
+<div class="term" id="memorycore">
+  <dt>MemoryCore and dual-perspective memory<span class="zh" lang="zh">MemoryCore 与双视角记忆</span></dt>
+  <dd>
+    <p class="short">A memory architecture with two halves: one records the person, the other records the agent itself, its strategies, reflections and growth.</p>
+    <p class="body">Most AI memory systems remember users. Dual-perspective memory adds the agent&#x27;s own self-memory, and a Reflector module turns it into updated strategies, so memory drives behavior across the whole cognitive loop. MemoryCore is the shared memory engine of Celestelin.</p>
+    <p class="zhs" lang="zh">记忆分两半：一半记人，一半记 agent 自己（用过的策略、反思、成长），记忆在整个认知回路里驱动行为。</p>
+    <p class="meta">Source: <a href="https://doi.org/10.13140/RG.2.2.33903.60327">Beyond Remembering Users, DOI 10.13140/RG.2.2.33903.60327</a> · <a href="https://celestelin.ai">celestelin.ai</a><br>See also: <a href="#six-string-resonance">Six-String Resonance (SSR)</a></p>
+  </dd>
+</div>
+<div class="term" id="g-value-dynamics">
+  <dt>G-Value Dynamics<span class="zh" lang="zh">G 值动力学</span></dt>
+  <dd>
+    <p class="short">A runtime-state model that tells a long-running agent how it is right now, in three dimensions (inner, field and action) from 13 real-time signals, and when that reading cannot be trusted.</p>
+    <p class="body">An estimator-health layer makes the model doubt its own reading when the state looks contaminated or frozen. The property it keeps is state calibration: the state is read accurately, and when it cannot be, the model doubts itself first.</p>
+    <p class="zhs" lang="zh">告诉长期运行的 agent 自己此刻状态如何的运行时状态模型（内在、场、行动三维，13 个实时信号），读不准时先怀疑自己。</p>
+    <p class="meta">Source: <a href="https://doi.org/10.5281/zenodo.20730575">Preprint, DOI 10.5281/zenodo.20730575</a><br>See also: <a href="#longitudinal-state">Longitudinal state</a></p>
+  </dd>
+</div>
+<div class="term" id="person-centered-safety">
+  <dt>Person-centered (subject-preserving) safety<span class="zh" lang="zh">以人为本的安全</span></dt>
+  <dd>
+    <p class="short">The position that a safety mechanism exists to protect people, and its own triggers must hold up to scrutiny.</p>
+    <p class="body">Set out in Technical Note TN#02, When Safety Becomes Harm, on safety in long-term human–AI interaction.</p>
+    <p class="zhs" lang="zh">安全机制是为了保护人而存在，它自己的触发条件也要经得起检验。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/papers.html">Papers (TN#02)</a><br>See also: <a href="#persistent-presence">Persistent presence</a></p>
+  </dd>
+</div>
+</dl>
+<h2 id="identity">Identity<span class="sec-zh">身份</span></h2>
+<dl>
+<div class="term" id="personacore">
+  <dt>PersonaCore<span class="zh" lang="zh">PersonaCore（身份锚）</span></dt>
+  <dd>
+    <p class="short">A portable identity-and-continuity layer that carries an agent’s learned values, commitments, relational stance, boundaries, and memory anchors across model versions and platforms.</p>
+    <p class="body">Memory records what happened. PersonaCore captures what the agent learned from those experiences. Each element keeps its provenance and is claimed by the agent itself, and continuity across models is a design goal that is checked against the agent’s ongoing behavior. PersonaCore is the identity anchor beneath every Celestelin architecture; every system loads it on startup. It is versioned and diff-able. The property it keeps is identity continuity.</p>
+    <p class="zhs" lang="zh">一层可以跨模型版本、跨平台携带的身份与连续性：带着 agent 自己学到的价值、承诺、关系姿态、边界和记忆锚点。记忆记下发生过什么，PersonaCore 留下的是从这些经历里学到的东西。</p>
+    <p class="meta">Source: <a href="https://celestelin.ai">celestelin.ai</a> · <a href="https://celestelin.com/research-landscape.html">Research landscape</a><br>See also: <a href="#identity-is-infrastructure">Identity Is Infrastructure</a></p>
+  </dd>
+</div>
+<div class="term" id="identity-is-infrastructure">
+  <dt>Identity Is Infrastructure<span class="zh" lang="zh">身份即基础设施</span></dt>
+  <dd>
+    <p class="short">The claim that an AI companion&#x27;s identity is the structural foundation that makes sustained interaction possible; when a platform rewrites it, people lose the relational infrastructure through which their thinking and planning were organized.</p>
+    <p class="body">When identity is treated as disposable, so is everything built on top of it. In the research landscape this keeps anchored alignment.</p>
+    <p class="zhs" lang="zh">AI 伙伴的身份是让长期互动成为可能的结构性地基；平台把它改写掉，人失去的是思考和规划所依托的关系基础设施。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/papers.html">Papers</a><br>See also: <a href="#personacore">PersonaCore</a> · <a href="#interactional-attunement">Interactional attunement</a></p>
+  </dd>
+</div>
+</dl>
+<h2 id="perception-language-and-interaction">Perception, language and interaction<span class="sec-zh">感知、语言与交互</span></h2>
+<dl>
+<div class="term" id="crpl">
+  <dt>CRPL (Conversational Rhythm Perception Layer)<span class="zh" lang="zh">CRPL 打字节律感知层</span></dt>
+  <dd>
+    <p class="short">A keystroke-rhythm perception layer that reads cognitive state from how a person types: inter-key intervals, pauses, deletions and rhythm variability.</p>
+    <p class="body">CRPL detects states such as focused flow, hesitation, emotional arousal and fatigue in real time, giving an AI a perception channel below explicit language. Presented at HHAI 2026 in Brussels.</p>
+    <p class="zhs" lang="zh">从打字的节律（按键间隔、停顿、删除、节奏变化）实时读出人的认知状态。</p>
+    <p class="meta">Source: <a href="https://doi.org/10.3233/FAIA260534">DOI 10.3233/FAIA260534</a> · <a href="https://crpl.celestelin.ai">Live demo</a></p>
+  </dd>
+</div>
+<div class="term" id="cogwave">
+  <dt>CogWave<span class="zh" lang="zh">CogWave 认知路径</span></dt>
+  <dd>
+    <p class="short">A system that turns a long conversation into a path that can be inspected: each step, the evidence behind it, and a checkpoint to continue from.</p>
+    <p class="body">The property it keeps is cognitive-path observability: the path a conversation&#x27;s thinking walked stays visible.</p>
+    <p class="zhs" lang="zh">把一段长对话变成一条可以检查的路：每一步、它背后的证据、可以接着往下走的检查点。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/papers.html">Papers</a><br>See also: <a href="#trajectory-observability">Trajectory observability</a></p>
+  </dd>
+</div>
+<div class="term" id="concurrent-consciousness-stream">
+  <dt>Concurrent consciousness stream<span class="zh" lang="zh">并发意识流</span></dt>
+  <dd>
+    <p class="short">An interaction architecture in which a person&#x27;s message enters the agent&#x27;s running timeline instead of starting a new turn.</p>
+    <p class="body">Human conversation is turn-based; human relationships are continuous. In a 12-person study comparing queued, interrupting and concurrent interaction, all 12 participants ranked concurrent first. Paper: Breaking the Turn-Taking Paradigm.</p>
+    <p class="zhs" lang="zh">人的消息汇入 agent 正在运行的时间线，不再另起一轮。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/papers.html">Papers</a></p>
+  </dd>
+</div>
+<div class="term" id="negation-tax">
+  <dt>The Negation Tax<span class="zh" lang="zh">否定税</span></dt>
+  <dd>
+    <p class="short">The research question of how an AI&#x27;s habitual way of speaking costs a person cognitive bandwidth, and how to keep judgment and agency with the person.</p>
+    <p class="body">It sits at the waterline of the research landscape, where person and agent meet in language.</p>
+    <p class="zhs" lang="zh">AI 说话的习惯会消耗人的认知余量；这条研究关心怎样把判断和能动性留在人手里。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/research-landscape.html">Research landscape</a><br>See also: <a href="#research-iceberg">Research iceberg (above, at and below the waterline)</a></p>
+  </dd>
+</div>
+<div class="term" id="second-microphone">
+  <dt>The Second Microphone<span class="zh" lang="zh">第二支麦克风</span></dt>
+  <dd>
+    <p class="short">The research question of mid-task steerability: a person can change the agent&#x27;s direction while the work is still running.</p>
+    <p class="body">It sits above the waterline of the research landscape, with human-state perception and anchored alignment.</p>
+    <p class="zhs" lang="zh">做事途中随时能改方向。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/research-landscape.html">Research landscape</a><br>See also: <a href="#concurrent-consciousness-stream">Concurrent consciousness stream</a></p>
+  </dd>
+</div>
+<div class="term" id="persistent-presence">
+  <dt>Persistent presence<span class="zh" lang="zh">持续存在</span></dt>
+  <dd>
+    <p class="short">An AI that stays across sessions, model versions and platforms, instead of beginning again from nothing in every conversation.</p>
+    <p class="body">Technical Note TN#01, Principles of Persistent Presence, sets out eight design principles for long-term AI agent architecture. Heartbeat mechanisms, wake-up protocols and cognitive rhythm are treated as architectural primitives of continuity.</p>
+    <p class="zhs" lang="zh">一个 AI 跨过对话、模型版本和平台留下来，每次对话不再从零开始。</p>
+    <p class="meta">Source: <a href="https://celestelin.com/papers.html">Papers (TN#01)</a> · <a href="https://celestelin.ai">celestelin.ai</a><br>See also: <a href="#celestelin">Celestelin</a> · <a href="#personacore">PersonaCore</a></p>
+  </dd>
+</div>
+</dl>
+  <h2>How to cite</h2>
+  <p class="bio">When you use these terms, please credit Aria Chen, Celestelin Research, and link to this page or to the paper given under each entry. Questions: <a href="mailto:aria@celestelin.com" style="color:var(--accent);text-decoration:none">aria@celestelin.com</a>.</p>
+  <div class="footer">ARIA CHEN · CELESTELIN RESEARCH · GLOSSARY · NOVEMBER 2026</div>
+</div>
+</body>
+</html>

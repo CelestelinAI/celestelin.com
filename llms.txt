@@ -1,0 +1,48 @@
+# Celestelin Research · Yingying Chen (Aria Chen)
+
+> Celestelin Research is the independent AI research program of Yingying Chen (Aria Chen), based in Calgary, Canada. She studies how long-running human–AI systems stay trustworthy: memory that can be trusted, agents that can see the path they have walked, work that resumes from the right place, runtime state an agent can check, and identity that stays continuous. Her instrument is Celestelin, a ~130,000-line persistent-agent ecosystem she built and operates as sole developer, continuously deployed since April 2025. She is a Fall 2027 PhD applicant.
+
+Yingying Chen (Aria Chen) is an independent AI researcher and the founder of Celestelin Research. Before research she spent four years in base-station hardware R&D at Huawei and eleven years founding and running an arts-education company. Her research landscape has three layers: long-term human–AI interaction above the waterline, language at the waterline, and the mechanisms that keep long-running agents trustworthy below it.
+
+Contact: aria@celestelin.com · ORCID 0009-0001-8270-1139
+
+## Who she is
+
+- [About Yingying Chen (Aria Chen)](https://celestelin.com/aria.html): research focus, publications and preprints, news
+- [ORCID](https://orcid.org/0009-0001-8270-1139)
+- [Google Scholar](https://scholar.google.com/citations?user=WEi3GFEAAAAJ)
+
+## Start here
+
+- [Where the Future Begins](https://celestelin.com/where-the-future-begins.html): "Continuity is how the past changes where the future begins." An essay on memory, identity, the human cost of forgetting, and how continuity can be tested, ending with a question for the agent reading it. Plain-text version: https://celestelin.com/where-the-future-begins.md
+
+## Research
+
+- [Celestelin Glossary](https://celestelin.com/glossary.html): one-sentence definitions of every term in the program — interaction field, Interaction Field Dynamics, Awareness Mirror, trajectory observability, ThreadPulse, Six-String Resonance, dual-perspective memory, G-Value Dynamics, PersonaCore, Identity Is Infrastructure, CRPL, CogWave, concurrent consciousness stream and more. Plain-text version: https://celestelin.com/glossary.md
+- [Research landscape](https://celestelin.com/research-landscape.html): the whole program as one iceberg — interaction above the waterline, language at it, trust below it
+- [Papers](https://celestelin.com/papers.html): the papers and the questions behind them
+- [Research map](https://celestelin.com/research-map.html)
+- [Timeline](https://celestelin.com/journal.html): how the program grew, system by system
+- [Awareness Mirror studies](https://celestelin.com/demo/awareness-mirror.html): an agent that can see its own path — order and time, change, drift across handoffs
+- [Interaction Field Dynamics](https://celestelin.com/demo/interaction-field.html): the relational state that grows between a person and an AI over time, and what it predicts
+
+## Publications and preprints
+
+- Seeing Thought in Typing: Cognitive Rhythm Perception from Keystroke Dynamics (CRPL). HHAI 2026 demo, presented in Brussels. https://doi.org/10.3233/FAIA260534
+- From Retrieval to Resonance: Six-String Resonance (SSR & SSR-Bench). Preprint, 2026, sole author. https://doi.org/10.5281/zenodo.23227988
+- Awareness Mirror: Runtime Self-Monitoring for Persistent Agents. Under review, 2026, sole author. Preprint: https://doi.org/10.5281/zenodo.20730588
+- G-Value Dynamics: A Multi-Timescale Runtime-State Model for Persistent Agents. Preprint, sole author. https://doi.org/10.5281/zenodo.20730575
+- ThreadPulse: Keeping Long-Running Work Resumable Across Sessions. Under review, 2026, sole author.
+- Interaction Field Dynamics: Measuring What Long-Term Human-AI Interaction Leaves Behind. Under review, 2026, sole author.
+- Breaking the Turn-Taking Paradigm: Concurrent Human-AI Interaction. Under review, 2026, sole author.
+- CogWave: Evidence-Linked Cognitive Mapping of Human-AI Conversation. Under review, 2026, system demonstration.
+- Technical Notes on Persistent Presence, Safety, and Agent State (TN series), Zenodo.
+- Beyond Trust and Satisfaction: Interaction Fields in Long-Term Human-AI Relationships. SSRN working paper.
+
+## Live systems
+
+- [celestelin.ai](https://celestelin.ai): the Celestelin ecosystem — Workshop, CelestelinAgent, EXO, Home, SoulNest, with PersonaCore and MemoryCore as shared layers
+
+## Topics
+
+Trustworthy long-running agents; persistent AI; agent memory; runtime self-monitoring; session continuity and resumable work; AI identity continuity; long-term human–AI interaction; concurrent (non-turn-taking) human–AI interaction; how an AI's language shapes human judgment and agency; human–AI interaction (HCI); AI safety and trustworthy AI.
