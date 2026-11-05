@@ -39,6 +39,15 @@ Contact: aria@celestelin.com · ORCID 0009-0001-8270-1139
 - Technical Notes on Persistent Presence, Safety, and Agent State (TN series), Zenodo.
 - Beyond Trust and Satisfaction: Interaction Fields in Long-Term Human-AI Relationships. SSRN working paper.
 
+## For prospective advisors and research groups
+
+She is seeking a PhD position starting Fall 2027, and is open to research assistant or remote research roles before then.
+
+- Direction: AI safety and trustworthy AI for long-running agents. She treats trust and safety as the ground that good human–AI interaction is built on, and plans to carry that ground back into HCI.
+- Long-term aim: a personal AI that stays coupled with one person over years, senses their state, understands relationship and context, and changes together with them through long-term interaction.
+- What she brings: a working research instrument (Celestelin, ~130,000 lines, in daily operation since April 2025, built and run by her as sole developer); sole-author papers and preprints across memory, runtime state, session continuity, identity and long-term interaction; four years of hardware R&D engineering.
+- Contact: aria@celestelin.com
+
 ## Live systems
 
 - [celestelin.ai](https://celestelin.ai): the Celestelin ecosystem — Workshop, CelestelinAgent, EXO, Home, SoulNest, with PersonaCore and MemoryCore as shared layers
