@@ -45,6 +45,7 @@
 html { scroll-behavior: smooth; }
 
 body {
+  overflow-x: hidden;   /* the hero's soft glow used to stick out past the right edge on screens under ~1320px */
   font-family: var(--sans);
   background: var(--bg);
   color: var(--fg);
@@ -108,7 +109,7 @@ nav {
 .hero {
   min-height: 100vh;
   display: flex; flex-direction: column; justify-content: center;
-  padding: 8rem 3rem 4rem;
+  padding: 6.5rem 3rem 3rem;
   max-width: 880px; margin: 0 auto;
   position: relative;
 }
@@ -176,6 +177,82 @@ nav {
   font-size: 0.68rem; color: var(--fg-muted);
   letter-spacing: 0.08em; text-transform: uppercase;
   margin-top: 0.2rem;
+}
+
+/* Selected results: the evidence bridge, on the first screen under the stats (2026-11-16) */
+.results {
+  margin-top: 2.25rem;
+  /* wider than the 880px hero column, so four cards sit in one row without becoming tall */
+  width: min(1160px, calc(100vw - 4rem));
+  position: relative; left: 50%;
+  margin-left: calc(min(1160px, calc(100vw - 4rem)) / -2);
+  opacity: 0; animation: fadeUp 1s ease 1s forwards;
+}
+.results-label {
+  font-family: var(--mono);
+  font-size: 0.6rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--fg-muted);
+  margin-bottom: 0.9rem;
+}
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+.result-card {
+  display: flex; flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1rem 0.95rem;
+  text-decoration: none; color: inherit;
+  transition: all 0.35s ease;
+}
+.result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(107,92,231,0.07);
+  border-color: var(--border-accent);
+}
+.result-name {
+  font-family: var(--mono);
+  font-size: 0.58rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.45rem;
+}
+.result-line {
+  font-family: var(--serif);
+  font-size: 1.02rem; font-style: italic; font-weight: 400;
+  line-height: 1.3; color: var(--fg);
+  margin-bottom: 0.45rem;
+}
+.result-sub {
+  font-size: 0.74rem; color: var(--fg-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+}
+.result-num {
+  font-family: var(--mono);
+  font-size: 1.05rem; font-weight: 400; color: var(--accent);
+  margin-top: auto; margin-bottom: 0.3rem;
+}
+.result-num span { color: var(--fg-muted); font-size: 0.82rem; }
+.result-num span.nw { color: inherit; font-size: inherit; white-space: nowrap; }
+.result-note {
+  font-size: 0.7rem; color: var(--fg-secondary);
+  line-height: 1.5;
+}
+.results-links {
+  display: flex; gap: 1.6rem; flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.results-links a {
+  font-size: 0.8rem; color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid rgba(107,92,231,0.3); padding-bottom: 2px;
+}
+.results-links a:hover { border-color: var(--accent); }
+@media (max-width: 900px) {
+  .results { width: auto; left: 0; margin-left: 0; }
+  .results-grid { grid-template-columns: 1fr 1fr; }
 }
 
 .thesis {
@@ -426,7 +503,9 @@ footer span {
   .nav-links { gap: 1.25rem; }
   .nav-links a { font-size: 0.75rem; }
   .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
-  .hero-stats { flex-direction: column; gap: 1.5rem; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 1.5rem; }
+  .results-grid { grid-template-columns: 1fr; }
+  .hero { min-height: auto; padding-top: 6.5rem; }
   .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .eco-grid { grid-template-columns: 1fr; }
   .infra-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -531,7 +610,45 @@ footer span {
     </div>
     <div>
       <div class="stat-number">15+</div>
-      <div class="stat-label">Papers &amp; preprints</div>
+      <div class="stat-label">Research manuscripts &amp; preprints</div>
+    </div>
+  </div>
+
+  <div class="results" aria-label="Selected results">
+    <div class="results-label">Selected results</div>
+    <div class="results-grid">
+      <a class="result-card" href="papers.html">
+        <div class="result-name">Awareness Mirror</div>
+        <div class="result-line">The interaction record can already exist in full, yet the acting agent can still lack a readable view of its own trajectory.</div>
+        <div class="result-sub">Awareness Mirror makes that trajectory legible at decision time.</div>
+        <div class="result-num">66.0% → 84.0%</div>
+        <div class="result-note">LongMemEval accuracy once the agent can see its own path, with the full history already in context.</div>
+      </a>
+      <a class="result-card" href="papers.html">
+        <div class="result-name">ThreadPulse</div>
+        <div class="result-line">A growing transcript preserves the past, but it does not preserve what is still active.</div>
+        <div class="result-sub">ThreadPulse turns active work into resumable state.</div>
+        <div class="result-num">99.6% <span>vs</span> 65.8%</div>
+        <div class="result-note">Lines resumed exactly after 1,200 turns, with self-written thread cards versus the full history.</div>
+      </a>
+      <a class="result-card" href="papers.html">
+        <div class="result-name">Interaction Field Dynamics</div>
+        <div class="result-line">Same explicit memory, different measured field.</div>
+        <div class="result-sub">The same explicit history can leave a different present interaction field. That field is measurable, and it partly reveals where the interaction is likely to go next.</div>
+        <div class="result-num">.731&nbsp;/&nbsp;.710 <span class="nw"><span>vs</span>&nbsp;.463&nbsp;/&nbsp;.448</span></div>
+        <div class="result-note">AUROC. A 16-dimensional interaction state carries a signal for whether the next speaker corrects the current turn, in two independent sets; full-history embeddings in grey.</div>
+      </a>
+      <a class="result-card" href="papers.html">
+        <div class="result-name">SSR</div>
+        <div class="result-line">History changes cognition by changing what becomes relevant now.</div>
+        <div class="result-sub">Which part of the past should wake up now?</div>
+        <div class="result-num">P@1 1.000 <span>vs</span> 0.700–0.900</div>
+        <div class="result-note">When a near-duplicate wrong memory competes with the right one, SSR picks the right one every time.</div>
+      </a>
+    </div>
+    <div class="results-links">
+      <a href="papers.html">All papers and results →</a>
+      <a href="research-landscape.html">Research landscape →</a>
     </div>
   </div>
 </header>
